@@ -1,31 +1,31 @@
 <script lang="ts">
 /** 面包屑组件 */
 export default {
-    name: "BreadCrumb"
-}
+    name: 'BreadCrumb'
+};
 </script>
 <script lang="ts" setup>
-import {ref, watch} from "vue";
-import {useRoute} from "vue-router";
+import {ref, watch} from 'vue';
+import {useRoute} from 'vue-router';
 
 const route = useRoute();
 
-const list = ref<Array<{ path: string; meta: any }>>([]);
+const list = ref<Array<{path: string; meta: any}>>([]);
 
 function updateList() {
     const matched = route.matched.filter((item) => item.meta && item.meta.title).map((item) => {
         return {
             path: item.path,
-            meta: {...item.meta},
-        }
-    })
+            meta: {...item.meta}
+        };
+    });
     list.value = matched;
 }
 
 watch(
     () => route.path,
-    function () {
-        if (route.path.startsWith("/redirect/")) return;
+    function() {
+        if (route.path.startsWith('/redirect/')) return;
         updateList();
     }
 );

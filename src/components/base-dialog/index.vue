@@ -1,18 +1,18 @@
 <script lang="ts">
 /** 基础弹出框组件 */
 export default {
-    name: "base-dialog"
-}
+    name: 'base-dialog'
+};
 </script>
 <script lang="ts" setup>
-import {onMounted, onUnmounted, ref, watch} from "vue";
-import {useZIndex} from "@/hooks/common";
-import {Scrollbar} from "../Scrollbar";
+import {onMounted, onUnmounted, ref, watch} from 'vue';
+import {useZIndex} from '@/hooks/common';
+import {Scrollbar} from '../Scrollbar';
 
 const props = defineProps({
     title: {
         type   : String,
-        default: "提示"
+        default: '提示'
     },
     /** 是否显示 */
     show: {
@@ -22,7 +22,7 @@ const props = defineProps({
     /** 弹出层内容区域宽度 */
     width: {
         type   : String,
-        default: "50%"
+        default: '50%'
     },
     /** 是否可以通过点击遮罩层关闭`Dialog` */
     closeByMask: {
@@ -33,14 +33,14 @@ const props = defineProps({
     appendToBody: {
         type   : Boolean,
         default: false
-    },
+    }
 });
 
 const emit = defineEmits<{
-    (event: "close"): void;
-    (event: "update:show", show: boolean): void;
-    (event: "afterLeave"): void;
-    (event: "afterEnd"): void;
+    (event: 'close'): void;
+    (event: 'update:show', show: boolean): void;
+    (event: 'afterLeave'): void;
+    (event: 'afterEnd'): void;
 }>();
 
 const currentZIndex = useZIndex();
@@ -57,7 +57,7 @@ const contentBox = ref<HTMLElement>();
  */
 const contentShow = ref(false);
 
-watch(() => props.show, function (val) {
+watch(() => props.show, function(val) {
     if (val) {
         // TODO: 等设置完偏移变量值之后，再开始缩放动画
         // 这里不能用 nextTick 代替
@@ -97,34 +97,34 @@ function setContentPosition(e: MouseEvent) {
 function setVariable(x: string, y: string) {
     const el = contentBox.value;
     if (el) {
-        el.style.setProperty("--content-x", x);
-        el.style.setProperty("--content-y", y);
+        el.style.setProperty('--content-x', x);
+        el.style.setProperty('--content-y', y);
     }
 }
 
 function onClose(e: MouseEvent) {
     // console.log("onClose >>", e.target);
     if ((e && e.target === el.value && props.closeByMask) || (e && e.target === closeBtn.value)) {
-        emit("update:show", false);
-        emit("close");
+        emit('update:show', false);
+        emit('close');
     }
 }
 
 function onAfterLeave() {
-    contentShow.value && setVariable("0", "0");
-    emit("afterLeave");
+    contentShow.value && setVariable('0', '0');
+    emit('afterLeave');
 }
 
 function onAfterEnter() {
-    emit("afterEnd");
+    emit('afterEnd');
 }
 
-onMounted(function () {
-    document.addEventListener("click", setContentPosition);
+onMounted(function() {
+    document.addEventListener('click', setContentPosition);
 });
 
-onUnmounted(function () {
-    document.removeEventListener("click", setContentPosition);
+onUnmounted(function() {
+    document.removeEventListener('click', setContentPosition);
 });
 </script>
 <template>

@@ -1,9 +1,9 @@
-import {reactive, watch} from "vue";
-import {modifyData} from "@/utils";
-import type {RouteItem} from "@/router/types";
-import type {LayoutType} from "./types";
+import {reactive, watch} from 'vue';
+import {modifyData} from '@/utils';
+import type {RouteItem} from '@/router/types';
+import type {LayoutType} from './types';
 
-const cacheName = "ModuleLayout";
+const cacheName = 'ModuleLayout';
 
 /**
  * `layout`状态模块
@@ -27,8 +27,8 @@ export default class ModuleLayout {
         showSidebar    : true,
         showSidebarLogo: true,
         tagList        : [],
-        layoutMode     : "",
-        keyword        : "",
+        layoutMode     : '',
+        keyword        : ''
     });
 
     constructor() {
@@ -39,7 +39,7 @@ export default class ModuleLayout {
                 modifyData(this.info, JSON.parse(value));
             }
         } catch (error) {
-            console.log("ModuleLayout init fail >>", error);
+            console.log('ModuleLayout init fail >>', error);
         }
 
         watch(

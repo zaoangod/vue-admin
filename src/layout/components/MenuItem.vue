@@ -1,17 +1,17 @@
 <script lang="ts" setup>
-import {computed, type PropType} from "vue";
-import type {LayoutType} from "@/store/types";
-import {useCollapseHeight, useLayoutRoute} from "./hooks";
+import {computed, type PropType} from 'vue';
+import type {LayoutType} from '@/store/types';
+import {useCollapseHeight, useLayoutRoute} from './hooks';
 
 const props = defineProps({
     menu : {
         type    : Object as PropType<LayoutType.Menu>,
-        required: true,
+        required: true
     },
     level: {
         type   : Number,
-        default: 0,
-    },
+        default: 0
+    }
 });
 
 const {
@@ -25,28 +25,28 @@ const {
 
 const {isActive, hasActive} = useLayoutRoute();
 
-const titleClass = computed(function () {
+const titleClass = computed(function() {
     const actived = isActive(props.menu);
     return {
-        "the-layout-menu-title": true,
+        'the-layout-menu-title': true,
         // "is-current": props.level === 0 ? hasActive(props.menu) : false,
-        "is-current": hasActive(props.menu) && !actived,
-        "is-open"   : props.menu.isOpen,
-        "is-active" : actived,
+        'is-current': hasActive(props.menu) && !actived,
+        'is-open'   : props.menu.isOpen,
+        'is-active' : actived
     };
 });
 
-const listClass = computed(function () {
+const listClass = computed(function() {
     return {
-        "the-layout-menu-list": true,
-        "is-open"             : props.menu.isOpen,
+        'the-layout-menu-list': true,
+        'is-open'             : props.menu.isOpen
     };
 });
 
 function linkClass(link: LayoutType.Menu) {
     return {
-        "the-layout-menu-link": true,
-        "is-active"           : isActive(link),
+        'the-layout-menu-link': true,
+        'is-active'           : isActive(link)
     };
 }
 

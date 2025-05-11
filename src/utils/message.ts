@@ -1,13 +1,13 @@
-import {useZIndex} from "@/hooks/common";
+import {useZIndex} from '@/hooks/common';
 
 export namespace Message {
     export interface Option {
         /** 持续时间（毫秒），默认`3000` */
-        duration?: number
+        duration?: number;
     }
 
     /** 消息类型 */
-    export type Type = "info" | "success" | "warning" | "error"
+    export type Type = 'info' | 'success' | 'warning' | 'error'
 }
 
 /**
@@ -22,8 +22,8 @@ function useMessage(params: Message.Option = {}) {
         hide: `hide${cssModule}`,
         text: `msg-text${cssModule}`,
         icon: `msg-icon${cssModule}`
-    }
-    const style = doc.createElement("style");
+    };
+    const style = doc.createElement('style');
     style.textContent = `
   .${className.box}, .${className.icon}, .${className.text} {
     padding: 0;
@@ -146,7 +146,7 @@ function useMessage(params: Message.Option = {}) {
     width: 20%;
     transform-origin: center;
   }
-  `.replace(/(\n|\t|\s)*/ig, "$1").replace(/\n|\t|\s(\{|\}|\,|\:|\;)/ig, "$1").replace(/(\{|\}|\,|\:|\;)\s/ig, "$1");
+  `.replace(/(\n|\t|\s)*/ig, '$1').replace(/\n|\t|\s(\{|\}|\,|\:|\;)/ig, '$1').replace(/(\{|\}|\,|\:|\;)\s/ig, '$1');
     doc.head.appendChild(style);
     /** 消息队列 */
     const messageList: Array<HTMLElement> = [];
@@ -180,7 +180,7 @@ function useMessage(params: Message.Option = {}) {
             }
         }
         el.classList.add(className.hide);
-        messageList.forEach(function (item) {
+        messageList.forEach(function(item) {
             item.style.top = `${getItemTop(item)}px`;
         });
     }
@@ -191,8 +191,8 @@ function useMessage(params: Message.Option = {}) {
      * @param type 消息类型
      * @param duration 持续时间，优先级比默认值高
      */
-    function show(content: string, type: Message.Type = "info", duration?: number) {
-        const el = doc.createElement("div");
+    function show(content: string, type: Message.Type = 'info', duration?: number) {
+        const el = doc.createElement('div');
         el.className = `${className.box} ${type}`;
         el.style.top = `${getItemTop()}px`;
         el.style.zIndex = zIndex.message;
@@ -205,56 +205,56 @@ function useMessage(params: Message.Option = {}) {
 
         // 添加动画监听事件
         function animationEnd() {
-            el.removeEventListener("animationend", animationEnd);
+            el.removeEventListener('animationend', animationEnd);
             setTimeout(removeItem, duration || params.duration || 3000, el);
         }
 
-        el.addEventListener("animationend", animationEnd);
+        el.addEventListener('animationend', animationEnd);
 
         function transitionEnd() {
-            if (getComputedStyle(el).opacity !== "0") return;
-            el.removeEventListener("transitionend", transitionEnd);
+            if (getComputedStyle(el).opacity !== '0') return;
+            el.removeEventListener('transitionend', transitionEnd);
             el.remove();
         }
 
-        el.addEventListener("transitionend", transitionEnd);
+        el.addEventListener('transitionend', transitionEnd);
     }
 
     return {
         show,
         /** 普通描述提示 */
         info(msg: string) {
-            show(msg, "info");
+            show(msg, 'info');
         },
         /** 成功提示 */
         success(msg: string) {
-            show(msg, "success");
+            show(msg, 'success');
         },
         /** 警告提示 */
         warning(msg: string) {
-            show(msg, "warning");
+            show(msg, 'warning');
         },
         /** 错误提示 */
         error(msg: string) {
-            show(msg, "error");
+            show(msg, 'error');
         }
-    }
+    };
 }
 
 namespace Dialog {
     export interface Show {
         /** 弹框标题，传`""`则不显示标题，默认为`"提示"`（可传html） */
-        title?: string
+        title?: string;
         /** 提示内容（可传html） */
-        content: string
+        content: string;
         /** 确认回调 */
-        confirm?: () => void
+        confirm?: () => void;
         /** 确认按钮文字，默认为`"确认"` */
-        confirmText?: string
+        confirmText?: string;
         /** 取消回调 */
-        cancel?: () => void
+        cancel?: () => void;
         /** 取消按钮文字，不传则没有取消操作 */
-        cancelText?: string
+        cancelText?: string;
     }
 }
 
@@ -272,7 +272,7 @@ function useDialog() {
         fade   : `fade${cssModule}`,
         show   : `show${cssModule}`,
         hide   : `hide${cssModule}`
-    }
+    };
     const cssText = `
   .${className.mask} {
     --time: .3s;
@@ -339,16 +339,16 @@ function useDialog() {
     transform: translate3d(var(--x), var(--y), 0) scale(0);
   }
   `;
-    const style = doc.createElement("style");
-    style.textContent = cssText.replace(/(\n|\t|\s)*/ig, "$1").replace(/\n|\t|\s(\{|\}|\,|\:|\;)/ig, "$1").replace(/(\{|\}|\,|\:|\;)\s/ig, "$1");
+    const style = doc.createElement('style');
+    style.textContent = cssText.replace(/(\n|\t|\s)*/ig, '$1').replace(/\n|\t|\s(\{|\}|\,|\:|\;)/ig, '$1').replace(/(\{|\}|\,|\:|\;)\s/ig, '$1');
     doc.head.appendChild(style);
     /** 点击记录坐标 */
     const clickSize = {
-        x: "0vw",
-        y: "0vh"
-    }
+        x: '0vw',
+        y: '0vh'
+    };
     // 添加点击事件，并记录每次点击坐标
-    doc.addEventListener("click", function (e) {
+    doc.addEventListener('click', function(e) {
         const {innerWidth, innerHeight} = window;
         const centerX = innerWidth / 2;
         const centerY = innerHeight / 2;
@@ -363,28 +363,28 @@ function useDialog() {
      * @param option
      */
     function show(option: Dialog.Show) {
-        const el = doc.createElement("section");
+        const el = doc.createElement('section');
         el.className = className.mask;
-        el.style.zIndex = zIndex.dialog
+        el.style.zIndex = zIndex.dialog;
         // 设置起始偏移位置
-        el.style.setProperty("--x", clickSize.x);
-        el.style.setProperty("--y", clickSize.y);
+        el.style.setProperty('--x', clickSize.x);
+        el.style.setProperty('--y', clickSize.y);
         // 设置完之后还原坐标位置
-        clickSize.x = "0vw";
-        clickSize.y = "0vh";
-        const cancelBtn = option.cancelText ? `<button class="the-btn">${option.cancelText}</button>` : "";
+        clickSize.x = '0vw';
+        clickSize.y = '0vh';
+        const cancelBtn = option.cancelText ? `<button class="the-btn">${option.cancelText}</button>` : '';
         el.innerHTML = `
     <div class="${className.popup}">
-      <h2 class="${className.title}">${typeof option.title === "string" ? option.title : "提示"}</h2>
+      <h2 class="${className.title}">${typeof option.title === 'string' ? option.title : '提示'}</h2>
       <div class="${className.content}">${option.content}</div>
       <div class="${className.footer}">
         ${cancelBtn}
-        <button class="${className.confirm} the-btn blue">${option.confirmText || "确认"}</button>
+        <button class="${className.confirm} the-btn blue">${option.confirmText || '确认'}</button>
       </div>
     </div>
     `;
         doc.body.appendChild(el);
-        el.addEventListener("transitionend", function (e) {
+        el.addEventListener('transitionend', function(e) {
             e.target === el && el.classList.contains(className.hide) && el.remove();
         });
 
@@ -393,20 +393,20 @@ function useDialog() {
         }
 
         if (option.cancelText) {
-            (el.querySelector(`.${className.footer} button`) as HTMLButtonElement).onclick = function () {
+            (el.querySelector(`.${className.footer} button`) as HTMLButtonElement).onclick = function() {
                 hide();
                 option.cancel && option.cancel();
-            }
+            };
         }
-        (el.querySelector(`.${className.confirm}`) as HTMLButtonElement).onclick = function () {
+        (el.querySelector(`.${className.confirm}`) as HTMLButtonElement).onclick = function() {
             hide();
             option.confirm && option.confirm();
-        }
+        };
     }
 
     return {
         show
-    }
+    };
 }
 
 const zIndex = {
@@ -416,7 +416,7 @@ const zIndex = {
     get dialog() {
         return (useZIndex() + 10).toString();
     }
-}
+};
 
 /** 顶部消息提醒控件 */
 export const message = useMessage({

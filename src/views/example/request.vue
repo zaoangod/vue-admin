@@ -1,20 +1,20 @@
 <script lang="ts">
 export default {
     // TODO: 设置路由缓存 keepAlive 时，这里必须要设置对应的 name 值
-    name: "example-request"
-}
+    name: 'example-request'
+};
 </script>
 <script lang="ts" setup>
-import {reactive} from "vue";
-import {getWeather} from "@/api/common";
-import {message} from "@/utils/message";
+import {reactive} from 'vue';
+import {getWeather} from '@/api/common';
+import {message} from '@/utils/message';
 
 const pageData = reactive({
-    city     : "广州",
+    city     : '广州',
     loading  : false,
     showTable: true,
-    content  : "",
-    desc     : "",
+    content  : '',
+    desc     : '',
     error    : false
 });
 
@@ -28,11 +28,11 @@ const pageData = reactive({
 // ]
 
 async function getData() {
-    if (!pageData.city) return message.warning("请输入城市名");
+    if (!pageData.city) return message.warning('请输入城市名');
     pageData.loading = true;
     const res = await getWeather(pageData.city);
     pageData.loading = false;
-    console.log("获取天气预报数据 >>", res);
+    console.log('获取天气预报数据 >>', res);
     if (res.code === 1) {
         const result = res.data;
         pageData.content = JSON.stringify(result, undefined, 4);

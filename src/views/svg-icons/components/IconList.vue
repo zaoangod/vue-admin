@@ -1,29 +1,29 @@
 <script lang="ts">
 /** 图标列表 */
 export default {
-    name: "IconList"
-}
+    name: 'IconList'
+};
 </script>
 <script lang="ts" setup>
-import {type PropType} from "vue";
-import {copyText} from "@/utils";
-import {message} from "@/utils/message";
+import {type PropType} from 'vue';
+import {copyText} from '@/utils';
+import {message} from '@/utils/message';
 
 const props = defineProps({
     type: {
-        type   : String as PropType<"page" | "popup">,
-        default: "page"
+        type   : String as PropType<'page' | 'popup'>,
+        default: 'page'
     }
 });
 
 const emit = defineEmits<{
-    (event: "iconClick", name: string): void
+    (event: 'iconClick', name: string): void
 }>();
 
 const svgFileReg = /(?<=(svg\/)).*?(?=(.svg))/;
 
 function getSvgNames() {
-    const svgInfo = import.meta.glob("/src/icons/svg/*.svg");
+    const svgInfo = import.meta.glob('/src/icons/svg/*.svg');
     const svgList = Object.keys(svgInfo);
     const names = svgList.map(value => value.match(svgFileReg)![0]);
     return names;
@@ -36,12 +36,12 @@ function getSvgIconCode(symbol: string) {
 const list = getSvgNames();
 
 function onClickIcon(name: string) {
-    if (props.type === "popup") {
-        emit("iconClick", name);
+    if (props.type === 'popup') {
+        emit('iconClick', name);
     } else {
         copyText(getSvgIconCode(name), () => {
-            message.success("复制图标代码成功！");
-        })
+            message.success('复制图标代码成功！');
+        });
     }
 }
 

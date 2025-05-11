@@ -1,19 +1,19 @@
-import type {LocationQueryRaw, RouteParamsRaw} from "vue-router";
-import type {RouteMeta} from "@/router/types";
+import type {LocationQueryRaw, RouteParamsRaw} from 'vue-router';
+import type {RouteMeta} from '@/router/types';
 
 export namespace LayoutType {
     export interface Tag {
-        path: string
+        path: string;
         /** 路由查询对象 */
-        query: LocationQueryRaw
+        query: LocationQueryRaw;
         /** 路由参数对象 */
-        params: RouteParamsRaw
+        params: RouteParamsRaw;
         /** 路由名 */
-        name?: string
+        name?: string;
         /** 标头 */
-        meta: RouteMeta
+        meta: RouteMeta;
         /** 子级路由 */
-        children?: Array<Tag>
+        children?: Array<Tag>;
     }
 
     export interface Info {
@@ -33,7 +33,7 @@ export namespace LayoutType {
          * | "" | 默认 |
          * | full-header | 顶部撑满  |
          */
-        layoutMode: "" | "full-header";
+        layoutMode: '' | 'full-header';
         /** 检索菜单关键字 */
         keyword: string;
     }
@@ -55,11 +55,11 @@ export namespace LayoutType {
  */
 export interface UserInfo {
     /** 用户`id` */
-    id: number | string
+    id: number | string;
     /** 用户名 */
-    name: string
+    name: string;
     /** 登录接口中返回的`token`字段 */
-    token: string
+    token: string;
     /**
      * 用户类型
      *
@@ -68,11 +68,11 @@ export interface UserInfo {
      * | 0 | 超级管理员 |
      * | 1 | 普通用户 |
      */
-    type: number | ""
+    type: number | '';
     /** 用户账户 */
-    account?: string | number
+    account?: string | number;
     /** 用户密码 */
-    password?: string
+    password?: string;
     /** 用户头像 */
-    avatar: string
+    avatar: string;
 }

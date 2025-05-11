@@ -1,45 +1,45 @@
-import {reactive} from "vue";
-import {jsonParse, modifyData} from "@/utils";
+import {reactive} from 'vue';
+import {jsonParse, modifyData} from '@/utils';
 
 export namespace Goods {
     export interface Form {
-        id: number
+        id: number;
         /** 商品名称 */
-        name: string
+        name: string;
         /** 价格（展示时要除以`100`） */
-        price: number
+        price: number;
         /** 商品规格 */
-        specs: Specs
+        specs: Specs;
     }
 
     export interface Specs {
         /** 尺码 */
-        size: "xs" | "s" | "m" | "l" | "xl" | "2xl"
+        size: 'xs' | 's' | 'm' | 'l' | 'xl' | '2xl';
         /** 宽（厘米） */
-        width: string
+        width: string;
         /** 高（厘米） */
-        height: string
+        height: string;
     }
 }
 
-const cacheName = "ModuleGoods";
+const cacheName = 'ModuleGoods';
 
 export function useGoodsInfo(): Goods.Form {
     return {
         id   : 0,
-        name : "",
+        name : '',
         price: 0,
         specs: {
-            size  : "xs",
-            width : "",
-            height: ""
+            size  : 'xs',
+            width : '',
+            height: ''
         }
-    }
+    };
 }
 
 /** 商品状态模块 */
 export default class ModuleGoods {
-    readonly info = reactive<DeepReadonly<Goods.Form>>(useGoodsInfo())
+    readonly info = reactive<DeepReadonly<Goods.Form>>(useGoodsInfo());
 
     constructor() {
         const value = sessionStorage.getItem(cacheName);

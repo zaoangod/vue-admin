@@ -4,15 +4,15 @@
  * - 引用`src/icons/svg/*svg`目录下所有图标
  */
 export default {
-    name : "SvgIcon",
+    name : 'SvgIcon',
     props: {
         name: {
             type    : String,
             required: true,
-            default : "",
+            default : ''
         }
     }
-}
+};
 </script>
 <template>
     <svg aria-hidden="true" class="svg-icon">

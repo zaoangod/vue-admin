@@ -1,6 +1,6 @@
 // import type { Directive, DirectiveBinding } from "vue";
 
-export {default as CollapseHeight} from "./index.vue";
+export {default as CollapseHeight} from './index.vue';
 
 /**
  * 元素出现
@@ -9,11 +9,11 @@ export {default as CollapseHeight} from "./index.vue";
  */
 export function show(el: HTMLElement) {
     if (!el) return;
-    el.style.display = "";
-    el.style.height = "";
+    el.style.display = '';
+    el.style.height = '';
     // console.log(el.clientHeight, el.offsetHeight);
     const height = el.clientHeight;
-    el.style.height = "0px";
+    el.style.height = '0px';
     el.offsetHeight; // 回流
     el.style.height = `${height}px`;
 }
@@ -27,7 +27,7 @@ export function hide(el: HTMLElement) {
     const height = el.clientHeight;
     el.style.height = `${height}px`;
     el.offsetHeight; // 回流
-    el.style.height = "0px";
+    el.style.height = '0px';
 }
 
 // TODO: 展开时有问题

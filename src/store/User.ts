@@ -1,20 +1,20 @@
-import {reactive} from "vue";
-import {jsonParse, modifyData} from "../utils";
-import {getCookie, removeCookie, setCookie} from "@/utils/cookie";
-import type {UserInfo} from "./types";
+import {reactive} from 'vue';
+import {jsonParse, modifyData} from '../utils';
+import {getCookie, removeCookie, setCookie} from '@/utils/cookie';
+import type {UserInfo} from './types';
 
-const cacheName = "ModuleUser";
+const cacheName = 'ModuleUser';
 
 function createUserInfo(): Readonly<UserInfo> {
     return {
-        id      : "",
-        name    : "",
-        type    : "",
-        token   : "",
-        avatar  : "",
-        account : "",
-        password: ""
-    }
+        id      : '',
+        name    : '',
+        type    : '',
+        token   : '',
+        avatar  : '',
+        account : '',
+        password: ''
+    };
 }
 
 /** cookie 过期天数 */

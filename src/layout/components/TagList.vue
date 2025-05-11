@@ -1,17 +1,17 @@
 <script lang="ts">
 /** 历史记录标签 */
 export default {
-    name: "TagList"
-}
+    name: 'TagList'
+};
 </script>
 <script lang="ts" setup>
-import {nextTick, onMounted, onUnmounted, reactive, ref, watch} from "vue";
-import {Scrollbar} from "@/components/Scrollbar";
-import {copyText} from "@/utils";
-import {message} from "@/utils/message";
-import store from "@/store";
-import {useLayoutRoute} from "./hooks";
-import type {LayoutType} from "@/store/types";
+import {nextTick, onMounted, onUnmounted, reactive, ref, watch} from 'vue';
+import {Scrollbar} from '@/components/Scrollbar';
+import {copyText} from '@/utils';
+import {message} from '@/utils/message';
+import store from '@/store';
+import {useLayoutRoute} from './hooks';
+import type {LayoutType} from '@/store/types';
 
 const layoutInfo = store.layout.info;
 const {route, router, isActive} = useLayoutRoute();
@@ -32,9 +32,9 @@ function onRemove(index: number) {
 // layoutInfo.tagList = [];
 watch(
     () => route.path,
-    function () {
+    function() {
         // console.log("route >>", route);
-        const hasItem = layoutInfo.tagList.some(item => isActive(item))
+        const hasItem = layoutInfo.tagList.some(item => isActive(item));
         if (!hasItem) {
             layoutInfo.tagList.push({
                 name  : route.name as string,
@@ -42,23 +42,23 @@ watch(
                 query : route.query,
                 params: route.params,
                 meta  : route.meta as any
-            })
+            });
         }
     },
     {
         immediate: true
     }
-)
+);
 
 const tagMenu = reactive({
     show: false,
-    left: "",
+    left: ''
 });
 
 const tagData = {
     list   : [
         {
-            label: "关闭其他",
+            label: '关闭其他',
             id   : 1,
             click() {
                 tagMenu.show = false;
@@ -74,26 +74,26 @@ const tagData = {
             show: () => layoutInfo.tagList.length > 1
         },
         {
-            label: "在新标签打开",
+            label: '在新标签打开',
             id   : 2,
             click() {
                 tagMenu.show = false;
-                const link = location.href.split("#");
-                window.open(`${link[0]}#${tagData.current!.path}`, "_blank");
-            },
+                const link = location.href.split('#');
+                window.open(`${link[0]}#${tagData.current!.path}`, '_blank');
+            }
         },
         {
-            label: "复制当前信息",
+            label: '复制当前信息',
             id   : 3,
             click() {
                 tagMenu.show = false;
                 const tag = tagData.current;
-                copyText(JSON.stringify(tag, null, 4), () => message.success("复制成功！"));
-            },
+                copyText(JSON.stringify(tag, null, 4), () => message.success('复制成功！'));
+            }
         }
     ],
     current: undefined as undefined | LayoutType.Tag
-}
+};
 
 const tagMenuRef = ref<HTMLElement>();
 
@@ -119,12 +119,12 @@ function onTagMenuMask(e: MouseEvent) {
     }
 }
 
-onMounted(function () {
-    document.addEventListener("click", onTagMenuMask);
+onMounted(function() {
+    document.addEventListener('click', onTagMenuMask);
 });
 
-onUnmounted(function () {
-    document.removeEventListener("click", onTagMenuMask);
+onUnmounted(function() {
+    document.removeEventListener('click', onTagMenuMask);
 });
 </script>
 <template>

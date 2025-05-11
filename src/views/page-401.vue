@@ -1,7 +1,7 @@
 <script lang="ts">
 export default {
-    name: "page-401",
-}
+    name: 'page-401'
+};
 </script>
 <template>
     <div class="page-401">

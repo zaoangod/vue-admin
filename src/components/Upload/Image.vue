@@ -1,35 +1,35 @@
 <script lang="ts">
 /** 上传图片组件 */
 export default {
-    name: "UploadImage"
-}
+    name: 'UploadImage'
+};
 </script>
 <script lang="ts" setup>
-import {type PropType, ref} from "vue";
-import {uploadFile} from "@/api/common";
-import {message} from "@/utils/message";
-import type {UploadChange} from "./index";
+import {type PropType, ref} from 'vue';
+import {uploadFile} from '@/api/common';
+import {message} from '@/utils/message';
+import type {UploadChange} from './index';
 
 const props = defineProps({
     /** 组件上传图片路径 */
     src: {
         type   : String,
-        default: ""
+        default: ''
     },
     /** 上传组件`id` */
     uploadId: {
-        type   : [String, Number] as PropType<UploadChange["id"]>,
-        default: ""
+        type   : [String, Number] as PropType<UploadChange['id']>,
+        default: ''
     },
     /** 图片宽度 */
     width: {
         type   : String,
-        default: "178px"
+        default: '178px'
     },
     /** 图片高度 */
     height: {
         type   : String,
-        default: "178px"
+        default: '178px'
     },
     /** 是否自动高度（针对图片） */
     autoHeight: {
@@ -39,7 +39,7 @@ const props = defineProps({
     /** 图片上传提示 */
     tip: {
         type   : [String, Number],
-        default: ""
+        default: ''
     },
     /** 上传图片最大体积（M） */
     maxSize: {
@@ -54,7 +54,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits<{
-    (event: "change", res: UploadChange<any>): void
+    (event: 'change', res: UploadChange<any>): void
 }>();
 
 /** 上传组件`input`节点 */
@@ -66,7 +66,7 @@ const loading = ref(false);
 async function onUpload() {
     const input = uploadInput.value!;
     const file = input.files![0];
-    input.value = ""; // 使用完一定要清空
+    input.value = ''; // 使用完一定要清空
     // console.log("上传图片文件 >>", file);
 
     // 判断大小
@@ -76,15 +76,15 @@ async function onUpload() {
     }
 
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append('file', file);
 
     loading.value = true;
-    const res = await uploadFile(formData)
+    const res = await uploadFile(formData);
     loading.value = false;
-    console.log("上传图片 >>", res);
+    console.log('上传图片 >>', res);
     if (res.code === 1) {
         const result: string = res.data.url;
-        emit("change", {
+        emit('change', {
             id : props.uploadId,
             src: result
         });
@@ -93,9 +93,9 @@ async function onUpload() {
 
 /** 清除当前图片 */
 function removeImg() {
-    emit("change", {
+    emit('change', {
         id : props.uploadId,
-        src: ""
+        src: ''
     });
 }
 </script>
@@ -121,7 +121,7 @@ function removeImg() {
                 >
             </div>
         </div>
-        <p v-if="tip" class="the-upload-tip">{{ loading ? "上传中..." : tip }}</p>
+        <p v-if="tip" class="the-upload-tip">{{ loading ? '上传中...' : tip }}</p>
     </div>
 </template>
 <style lang="scss">

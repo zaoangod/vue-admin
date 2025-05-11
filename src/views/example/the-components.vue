@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import {reactive, ref} from "vue";
-import {Scrollbar} from "@/components/Scrollbar";
-import {type UploadChange, UploadImage} from "@/components/Upload";
-import {CollapseHeight} from "@/components/CollapseHeight";
-import {type Message, message, messageBox} from "@/utils/message";
+import {reactive, ref} from 'vue';
+import {Scrollbar} from '@/components/Scrollbar';
+import {type UploadChange, UploadImage} from '@/components/Upload';
+import {CollapseHeight} from '@/components/CollapseHeight';
+import {type Message, message, messageBox} from '@/utils/message';
 
 const formData = reactive({
-    banner: "",
-    logo  : ""
-})
+    banner: '',
+    logo  : ''
+});
 
 const list = ref(new Array(10).fill(0).map((_, index) => index + 1));
 
@@ -16,7 +16,7 @@ const list = ref(new Array(10).fill(0).map((_, index) => index + 1));
  * 监听上传图片
  * @param info 回调数据
  */
-function onUpload(info: UploadChange<"banner" | "logo">) {
+function onUpload(info: UploadChange<'banner' | 'logo'>) {
     // info.id 就是组件绑定的 uploadId，多个上传组件的时候用来区分用，可传可不传
     formData[info.id] = info.src;
 }
@@ -24,7 +24,7 @@ function onUpload(info: UploadChange<"banner" | "logo">) {
 const dialogInfo = reactive({
     first : {
         show : false,
-        count: 0,
+        count: 0
     },
     second: {
         show : false,
@@ -34,13 +34,13 @@ const dialogInfo = reactive({
         show : false,
         count: 0
     }
-})
+});
 
 const delayShow = ref(false);
 
 let delayTimer: number;
 
-function openDialog(type: "first" | "second" | "third") {
+function openDialog(type: 'first' | 'second' | 'third') {
     dialogInfo[type].count++;
     dialogInfo[type].show = true;
     delayTimer = setTimeout(() => {
@@ -48,7 +48,7 @@ function openDialog(type: "first" | "second" | "third") {
     }, 2000);
 }
 
-function closeDialog(type: "first" | "second" | "third") {
+function closeDialog(type: 'first' | 'second' | 'third') {
     dialogInfo[type].show = false;
     clearTimer();
 }
@@ -59,16 +59,16 @@ function clearTimer() {
 }
 
 interface MessageBtn {
-    label: string
-    type: Message.Type
-    className: string
+    label: string;
+    type: Message.Type;
+    className: string;
 }
 
 const messageBtns: Array<MessageBtn> = [
-    {label: "message-info", type: "info", className: "blue"},
-    {label: "message-success", type: "success", className: "green"},
-    {label: "message-warning", type: "warning", className: "yellow"},
-    {label: "message-error", type: "error", className: "red"},
+    {label: 'message-info', type: 'info', className: 'blue'},
+    {label: 'message-success', type: 'success', className: 'green'},
+    {label: 'message-warning', type: 'warning', className: 'yellow'},
+    {label: 'message-error', type: 'error', className: 'red'}
 ];
 
 function openMessage(item: MessageBtn) {
@@ -77,8 +77,8 @@ function openMessage(item: MessageBtn) {
 
 function openMessageBox(isConfirm = false) {
     messageBox({
-        content   : isConfirm ? "确认取消框" : "确认框",
-        cancelText: isConfirm ? "取消" : undefined
+        content   : isConfirm ? '确认取消框' : '确认框',
+        cancelText: isConfirm ? '取消' : undefined
     });
 }
 

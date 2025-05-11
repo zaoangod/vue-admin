@@ -1,7 +1,7 @@
 <script lang="ts">
 export default {
-    name: "App",
-}
+    name: 'App'
+};
 </script>
 <template>
     <router-view />

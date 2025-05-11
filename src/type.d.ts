@@ -65,24 +65,24 @@ type NestedKeyOf<T extends object> = {
 }[keyof T & (string | number)];
 
 /** 运算符号 */
-type NumberSymbols = "+" | "-" | "*" | "/";
+type NumberSymbols = '+' | '-' | '*' | '/';
 
 /**
  * `JavaScript`类型映射表
  * - 这里只枚举一些常见类型，后续根据使用场景自行添加即可
  */
 interface JavaScriptType {
-    string: string
-    number: number
-    boolean: boolean
-    null: null
-    undefined: undefined
-    array: Array<any>
-    object: object
-    regexp: RegExp
-    function: Function
-    promise: Promise<any>
-    formdata: FormData
+    string: string;
+    number: number;
+    boolean: boolean;
+    null: null;
+    undefined: undefined;
+    array: Array<any>;
+    object: object;
+    regexp: RegExp;
+    function: Function;
+    promise: Promise<any>;
+    formdata: FormData;
 }
 
 /** `JavaScript`类型 */
@@ -90,14 +90,14 @@ type JavaScriptTypes = keyof JavaScriptType;
 
 /** 基础对象 */
 interface BaseObj<T = string | number> {
-    [key: string]: T
+    [key: string]: T;
 }
 
 interface AjaxParams {
     /** 请求路径 */
-    url: string
+    url: string;
     /** 请求方法 */
-    method: "GET" | "POST" | "PUT" | "DELETE"
+    method: 'GET' | 'POST' | 'PUT' | 'DELETE';
     /**
      * 传参对象
      *
@@ -117,16 +117,16 @@ interface AjaxParams {
      * const data = "name=hjs&id=123";
      * ```
      */
-    data: object | string | FormData
+    data: object | string | FormData;
     /** 超时毫秒 */
-    timeout?: number
+    timeout?: number;
     /** `XMLHttpRequest.header`设置对象 */
-    headers?: { [key: string]: string }
+    headers?: {[key: string]: string};
     /**
      * 接口数据响应类型
      * - 默认`json`
      */
-    responseType: XMLHttpRequestResponseType
+    responseType: XMLHttpRequestResponseType;
 
     /** 成功回调 */
     success?(
@@ -134,24 +134,24 @@ interface AjaxParams {
         res: any,
         /** 响应原数据结果 */
         response: XMLHttpRequest
-    ): void
+    ): void;
 
     /** 失败回调 */
-    fail?(value: XMLHttpRequest): void
+    fail?(value: XMLHttpRequest): void;
 
     /** 超时回调 */
-    onTimeout?(value: XMLHttpRequest): void
+    onTimeout?(value: XMLHttpRequest): void;
 
     /** 请求进度（上传文件） */
-    onProgress?(event: ProgressEvent<XMLHttpRequestEventTarget>): void
+    onProgress?(event: ProgressEvent<XMLHttpRequestEventTarget>): void;
 }
 
 /** 接口请求类型集合 */
 declare namespace Api {
     /** `request`方法请求配置 */
-    interface Options extends Pick<AjaxParams, "responseType" | "onProgress"> {
+    interface Options extends Pick<AjaxParams, 'responseType' | 'onProgress'> {
         /** `XMLHttpRequest.header`设置对象 */
-        headers: { [key: string]: string };
+        headers: {[key: string]: string};
         /** 单独为当前接口设置超时毫秒 */
         timeout: number;
         /**
@@ -164,27 +164,27 @@ declare namespace Api {
     /** 接口请求基础响应数据 */
     interface Result<T = any> {
         /** 接口状态`code === 1`为成功 */
-        code: number
+        code: number;
         /** 接口响应数据 */
-        data: T
+        data: T;
         /** 接口响应信息 */
-        msg: string
+        msg: string;
     }
 
     interface List<T = any> extends PageInfo {
         /** 列表数据 */
-        list: Array<T>
+        list: Array<T>;
     }
 }
 
 /** 页码信息 */
 interface PageInfo {
     /** 一页多少条 */
-    pageSize: number
+    pageSize: number;
     /** 当前页，从`1`开始 */
-    currentPage: number
+    currentPage: number;
     /** 总数 */
-    total?: number
+    total?: number;
 }
 
 interface Window {
@@ -192,6 +192,6 @@ interface Window {
      * 当前版本，方便在控制台查看调试用
      * @description 引用的是`package.json`中的`version`
      */
-    version: string
+    version: string;
 }
 

@@ -1,7 +1,7 @@
-import type {LayoutType} from "@/store/types";
-import {useRoute, useRouter} from "vue-router";
+import type {LayoutType} from '@/store/types';
+import {useRoute, useRouter} from 'vue-router';
 
-type ActiveItem = Partial<Pick<LayoutType.Tag, "path">> & {
+type ActiveItem = Partial<Pick<LayoutType.Tag, 'path'>> & {
     query?: any;
     params?: any;
 };
@@ -49,8 +49,8 @@ export function useLayoutRoute() {
         route,
         router,
         isActive,
-        hasActive,
-    }
+        hasActive
+    };
 }
 
 /** 一直累加的`id` */
@@ -75,7 +75,7 @@ export function useCollapseHeight(duration = 300) {
     function onBeforeEnter(el: any) {
         // console.log("beforeEnter >>", el);
         el.style.transition = transitionStyle;
-        el.style.height = "0px";
+        el.style.height = '0px';
     }
 
     /**
@@ -88,9 +88,9 @@ export function useCollapseHeight(duration = 300) {
         if (el.scrollHeight !== 0) {
             el.style.height = `${el.scrollHeight}px`;
         } else {
-            el.style.height = "";
+            el.style.height = '';
         }
-        el.style.overflow = "hidden";
+        el.style.overflow = 'hidden';
     }
 
     /**
@@ -99,7 +99,7 @@ export function useCollapseHeight(duration = 300) {
      */
     function onAfterEnter(el: any) {
         // console.log("afterEnter >>", el);
-        el.style.transition = el.style.height = "";
+        el.style.transition = el.style.height = '';
     }
 
     /**
@@ -108,9 +108,9 @@ export function useCollapseHeight(duration = 300) {
      */
     function onBeforeLeave(el: any) {
         // console.log("beforeLeave >>", el);
-        el.style.display = "block";
+        el.style.display = 'block';
         el.style.height = `${el.scrollHeight}px`;
-        el.style.overflow = "hidden";
+        el.style.overflow = 'hidden';
     }
 
     /**
@@ -122,7 +122,7 @@ export function useCollapseHeight(duration = 300) {
         // console.log("leave >>", el);
         if (el.scrollHeight !== 0) {
             el.style.transition = transitionStyle;
-            el.style.height = "0px";
+            el.style.height = '0px';
         }
     }
 
@@ -132,7 +132,7 @@ export function useCollapseHeight(duration = 300) {
      */
     function onAfterLeave(el: any) {
         // console.log("afterLeave >>", el);
-        el.style.transition = el.style.height = "";
+        el.style.transition = el.style.height = '';
     }
 
     return {
@@ -141,6 +141,6 @@ export function useCollapseHeight(duration = 300) {
         onAfterEnter,
         onBeforeLeave,
         onLeave,
-        onAfterLeave,
-    }
+        onAfterLeave
+    };
 }

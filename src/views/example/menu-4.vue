@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import store from '@/store';
-import GoodsForm from './components/GoodsForm.vue'
+import GoodsForm from './components/GoodsForm.vue';
 import type {Goods} from '@/store/Goods';
 
 const goods = store.goods;
@@ -11,7 +11,7 @@ const goods = store.goods;
  * @param max 最大数
  */
 function ranInt(min: number, max: number) {
-    return Math.round(Math.random() * (max - min) + min)
+    return Math.round(Math.random() * (max - min) + min);
 }
 
 /**
@@ -20,21 +20,21 @@ function ranInt(min: number, max: number) {
  * @param max
  */
 function randomText(min: number, max: number) {
-    const len = parseInt((Math.random() * max).toString()) + min
-    const base = 20000
-    const range = 1000
-    let str = ''
-    let i = 0
+    const len = parseInt((Math.random() * max).toString()) + min;
+    const base = 20000;
+    const range = 1000;
+    let str = '';
+    let i = 0;
     while (i < len) {
-        i++
-        const lower = parseInt((Math.random() * range).toString())
-        str += String.fromCharCode(base + lower)
+        i++;
+        const lower = parseInt((Math.random() * range).toString());
+        str += String.fromCharCode(base + lower);
     }
-    return str
+    return str;
 }
 
 function onChange() {
-    const sizes: Array<Goods.Specs["size"]> = ["xs", "s", "m", "l", "xl", "2xl"];
+    const sizes: Array<Goods.Specs['size']> = ['xs', 's', 'm', 'l', 'xl', '2xl'];
     goods.update({
         id   : ranInt(0, 999),
         name : randomText(2, 20),
@@ -42,7 +42,7 @@ function onChange() {
         specs: {
             size: sizes[ranInt(0, sizes.length - 1)]
         }
-    })
+    });
 }
 
 function onClear() {

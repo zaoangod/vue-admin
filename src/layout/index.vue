@@ -1,15 +1,15 @@
 <script lang="ts">
 /** 整体布局架子 */
 export default {
-    name: "Layout"
-}
+    name: 'Layout'
+};
 </script>
 <script lang="ts" setup>
-import {onMounted, ref} from "vue";
-import HeaderBar from "./components/HeaderBar.vue";
-import Sidebar from "./components/Sidebar.vue";
-import store from "@/store";
-import type {RouteItem} from "@/router/types";
+import {onMounted, ref} from 'vue';
+import HeaderBar from './components/HeaderBar.vue';
+import Sidebar from './components/Sidebar.vue';
+import store from '@/store';
+import type {RouteItem} from '@/router/types';
 
 const layoutInfo = store.layout.info;
 
@@ -42,8 +42,8 @@ function toTop() {
     contentEl.scrollTo({
         top     : 0,
         left    : 0,
-        behavior: "smooth"
-    })
+        behavior: 'smooth'
+    });
 }
 
 function onScroll() {
@@ -51,9 +51,9 @@ function onScroll() {
     showToTop.value = contentEl.scrollTop > document.documentElement.clientHeight;
 }
 
-onMounted(function () {
+onMounted(function() {
     contentEl = contentBox.value!;
-    contentEl.addEventListener("scroll", onScroll);
+    contentEl.addEventListener('scroll', onScroll);
     onScroll(); // 一开始要先执行，因为有可能一开始就处于页面非顶部
 });
 </script>

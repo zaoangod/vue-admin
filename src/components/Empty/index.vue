@@ -1,17 +1,17 @@
 <script lang="ts">
 /** 空状态组件 */
 export default {
-    name : "Empty",
+    name : 'Empty',
     props: {
         text: {
             type   : String,
-            default: "暂无数据"
+            default: '暂无数据'
         },
         size: {
-            type: Number,
+            type: Number
         }
     }
-}
+};
 </script>
 <template>
     <div class="empty">

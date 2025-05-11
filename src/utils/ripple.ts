@@ -19,22 +19,22 @@ export default function ripple(event: TouchEvent | MouseEvent, target: HTMLEleme
     if (ripplePool.length > 1) {
         node = ripplePool.shift()!;
     } else {
-        node = document.createElement("div");
-        node.className = "ripple";
+        node = document.createElement('div');
+        node.className = 'ripple';
     }
 
     /** 点击目标矩阵尺寸 */
     const rect = target.getBoundingClientRect();
     /** 当前自定义颜色值 */
-    const color = target.getAttribute("color");
+    const color = target.getAttribute('color');
     /** 波纹大小 */
     let size = Math.max(rect.width, rect.height);
     // 设置最大范围
     if (size > 200) size = 200;
     // 设置大小
-    node.style.height = node.style.width = size + "px";
+    node.style.height = node.style.width = size + 'px';
     // 默认是白色透明
-    node.style.backgroundColor = color || "rgba(255, 255, 255, .45)";
+    node.style.backgroundColor = color || 'rgba(255, 255, 255, .45)';
     // 这里必须输出节点后再设置位置，不然会有问题
     target.appendChild(node);
     const touches = (event as TouchEvent).touches;
@@ -43,15 +43,15 @@ export default function ripple(event: TouchEvent | MouseEvent, target: HTMLEleme
     const top = y - rect.top - (node.offsetHeight / 2);
     const left = x - rect.left - (node.offsetWidth / 2);
     // console.log(top, left);
-    node.style.top = top + "px";
-    node.style.left = left + "px";
+    node.style.top = top + 'px';
+    node.style.left = left + 'px';
 
     function end() {
-        node.removeEventListener("animationend", end);
+        node.removeEventListener('animationend', end);
         // console.log("动画结束", node);
         target.removeChild(node);
         ripplePool.push(node);
     }
 
-    node.addEventListener("animationend", end);
+    node.addEventListener('animationend', end);
 }

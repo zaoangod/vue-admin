@@ -31,7 +31,7 @@ export function checkType(target: any) {
  * }
  * ```
  */
-export function isType<T>(target: any, type: T extends "object" ? T : JavaScriptTypes): target is T extends JavaScriptTypes ? JavaScriptType[T] : T {
+export function isType<T>(target: any, type: T extends 'object' ? T : JavaScriptTypes): target is T extends JavaScriptTypes ? JavaScriptType[T] : T {
     return checkType(target) === type;
 }
 
@@ -50,7 +50,7 @@ export function modifyData<T extends object>(target: T, value: DeepPartial<T>) {
             const item = value[key] as any;
             const _target = target[key];
             // 深层逐个赋值
-            if (isType(_target, "object")) {
+            if (isType(_target, 'object')) {
                 modifyData(_target, item);
             } else {
                 target[key] = item;
@@ -82,15 +82,15 @@ export function setData<T extends object>(target: T, value: T) {
  * formatDate(1603264465956, "Y年M月D日");
  * ```
  */
-export function formatDate(value: string | number | Date = Date.now(), format = "Y-M-D h:m:s") {
-    if (["null", null, "undefined", undefined, ""].includes(value as any)) return "";
+export function formatDate(value: string | number | Date = Date.now(), format = 'Y-M-D h:m:s') {
+    if (['null', null, 'undefined', undefined, ''].includes(value as any)) return '';
     // ios 和 mac 系统中，带横杆的字符串日期是格式不了的，这里做一下判断处理
-    if (typeof value === "string" && new Date(value).toString() === "Invalid Date") {
-        value = value.replace(/-/g, "/");
+    if (typeof value === 'string' && new Date(value).toString() === 'Invalid Date') {
+        value = value.replace(/-/g, '/');
     }
     const formatNumber = (n: number) => `0${n}`.slice(-2);
     const date = new Date(value);
-    const formatList = ["Y", "M", "D", "h", "m", "s"];
+    const formatList = ['Y', 'M', 'D', 'h', 'm', 's'];
     const resultList = [
         date.getFullYear().toString(),
         formatNumber(date.getMonth() + 1),
@@ -112,28 +112,28 @@ export function formatDate(value: string | number | Date = Date.now(), format = 
  * @param fail 出错回调
  */
 export function copyText(text: string, success?: () => void, fail?: (res: string) => void) {
-    text = text.replace(/(^\s*)|(\s*$)/g, "");
+    text = text.replace(/(^\s*)|(\s*$)/g, '');
     if (!text) {
-        fail && fail("复制的内容不能为空！");
+        fail && fail('复制的内容不能为空！');
         return;
     }
-    const id = "the-clipboard";
+    const id = 'the-clipboard';
     let clipboard = (document.getElementById(id) as HTMLTextAreaElement);
     if (!clipboard) {
-        clipboard = document.createElement("textarea");
+        clipboard = document.createElement('textarea');
         clipboard.id = id;
         clipboard.readOnly = true;
-        clipboard.style.cssText = "font-size: 15px; position: fixed; top: -1000%; left: -1000%;";
+        clipboard.style.cssText = 'font-size: 15px; position: fixed; top: -1000%; left: -1000%;';
         document.body.appendChild(clipboard);
     }
     clipboard.value = text;
     clipboard.select();
     clipboard.setSelectionRange(0, clipboard.value.length);
-    const state = document.execCommand("copy");
+    const state = document.execCommand('copy');
     if (state) {
         success && success();
     } else {
-        fail && fail("复制失败");
+        fail && fail('复制失败');
     }
 }
 
@@ -145,16 +145,16 @@ export function copyText(text: string, success?: () => void, fail?: (res: string
  */
 export function inputOnlyNumber(value: string | number, decimal?: boolean, negative?: boolean) {
     let result = value.toString().trim();
-    if (result.length === 0) return "";
-    const minus = (negative && result[0] == "-") ? "-" : "";
+    if (result.length === 0) return '';
+    const minus = (negative && result[0] == '-') ? '-' : '';
     if (decimal) {
-        result = result.replace(/[^0-9.]+/ig, "");
-        let array = result.split(".");
+        result = result.replace(/[^0-9.]+/ig, '');
+        let array = result.split('.');
         if (array.length > 1) {
-            result = array[0] + "." + array[1];
+            result = array[0] + '.' + array[1];
         }
     } else {
-        result = result.replace(/[^0-9]+/ig, "");
+        result = result.replace(/[^0-9]+/ig, '');
     }
     return minus + result;
 }
@@ -168,7 +168,7 @@ export function deepClone<T>(target: T) {
 
     function clone(value: any): T {
         // 处理空和非对象类型
-        if (!value || typeof value !== "object") return value;
+        if (!value || typeof value !== 'object') return value;
         // 处理其他特殊类型
         if (value instanceof Date) {
             return new Date(value) as any;
@@ -216,8 +216,8 @@ export function isExternal(path: string) {
  * console.log(val); // "name=hjs&id=123"
  * ```
  */
-export function jsonToPath(params: { [key: string]: number | string | boolean }) {
-    let result = "";
+export function jsonToPath(params: {[key: string]: number | string | boolean}) {
+    let result = '';
     for (const key in params) {
         result += `&${key}=${params[key]}`;
     }
@@ -232,11 +232,11 @@ export function jsonToPath(params: { [key: string]: number | string | boolean })
  */
 export function jsonParse<T = any>(target: any, defaultValue: any = {}) {
     let result: T = defaultValue;
-    if (isType(target, "string")) {
+    if (isType(target, 'string')) {
         try {
             result = JSON.parse(target);
         } catch (error) {
-            console.warn("JSON格式化对象错误 >>", error);
+            console.warn('JSON格式化对象错误 >>', error);
         }
     }
     return result;

@@ -1,25 +1,25 @@
 <script lang="ts" setup>
-import {reactive, ref} from "vue";
-import store from "@/store";
-import {login} from "@/api/common";
-import {openNextPage} from "@/router/permission";
-import {modifyData} from "@/utils";
-import {message} from "@/utils/message";
-import {CheckBox} from "@/components/CheckBox";
+import {reactive, ref} from 'vue';
+import store from '@/store';
+import {login} from '@/api/common';
+import {openNextPage} from '@/router/permission';
+import {modifyData} from '@/utils';
+import {message} from '@/utils/message';
+import {CheckBox} from '@/components/CheckBox';
 
-const cacheName = "login-info";
+const cacheName = 'login-info';
 
-const tipList = ["admin", "normal"];
+const tipList = ['admin', 'normal'];
 
 const info = store.projectInfo;
 
-const copyRight = "Copyright © Travis-hjs.github.io All Rights Reserved 请使用 Google Chrome、Microsoft Edge、360浏览器、非 IE 等浏览器"
+const copyRight = 'Copyright © Travis-hjs.github.io All Rights Reserved 请使用 Google Chrome、Microsoft Edge、360浏览器、非 IE 等浏览器';
 
 /** 表单数据 */
 const formData = reactive({
-    account : "",
-    password: ""
-})
+    account : '',
+    password: ''
+});
 
 const loading = ref(false);
 
@@ -40,7 +40,7 @@ function setLoginInfo(account: string) {
 function onLogin(adopt: boolean) {
     async function start() {
         loading.value = true;
-        const res = await login(formData)
+        const res = await login(formData);
         loading.value = false;
         if (res.code === 1) {
             saveLoginInfo();
@@ -54,10 +54,10 @@ function onLogin(adopt: boolean) {
         return start();
     }
     if (!formData.account) {
-        return message.error("请输入账号");
+        return message.error('请输入账号');
     }
     if (!formData.password) {
-        return message.error("请输入密码");
+        return message.error('请输入密码');
     }
     start();
 }

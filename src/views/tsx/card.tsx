@@ -1,11 +1,11 @@
-import {computed, defineComponent, type PropType, ref, Transition} from "vue";
-import "./card.scss";
+import {computed, defineComponent, type PropType, ref, Transition} from 'vue';
+import './card.scss';
 
 /** `tsx`卡片组件 */
 const TsxCard = defineComponent({
     props: {
         images: {
-            type    : Array as PropType<Array<{ img: string }>>,
+            type    : Array as PropType<Array<{img: string}>>,
             required: true
         },
         title : String,
@@ -14,12 +14,12 @@ const TsxCard = defineComponent({
     setup(props) {
         const index = ref(0);
 
-        const listStyle = computed(function () {
+        const listStyle = computed(function() {
             const length = props.images.length;
             return {
-                width    : length * 100 + "%",
+                width    : length * 100 + '%',
                 transform: `translate3d(-${index.value * (100 / length)}%, 0px, 0px)`
-            }
+            };
         });
 
         /**
@@ -65,6 +65,6 @@ const TsxCard = defineComponent({
             </div>
         );
     }
-})
+});
 
 export default TsxCard;

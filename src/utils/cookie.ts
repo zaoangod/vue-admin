@@ -12,8 +12,8 @@ interface CookieOption {
 export function getCookie(key: string) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${key}=`);
-    if (parts.length === 2) return parts.pop()!.split(";").shift();
-    return "";
+    if (parts.length === 2) return parts.pop()!.split(';').shift();
+    return '';
 }
 
 /**
@@ -42,7 +42,7 @@ export function setCookie(key: string, value: string, option?: CookieOption) {
  * @param key 目标对象`key`值
  * @param options 配置项
  */
-export function removeCookie(key: string, options?: Pick<CookieOption, "domain">) {
+export function removeCookie(key: string, options?: Pick<CookieOption, 'domain'>) {
     const time = `expires=Thu, 01 Jan 1970 00:00:00 GMT`;
     if (options && options.domain) {
         document.cookie = `${key}=; domain=${options.domain}; path=/; ${time}`;

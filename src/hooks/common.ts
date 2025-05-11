@@ -20,7 +20,7 @@ let countId = 0;
  */
 export function getCountId(prefix?: string) {
     countId++;
-    prefix = prefix ? `${prefix}-` : "";
+    prefix = prefix ? `${prefix}-` : '';
     return `${prefix}${Math.random().toString(36).slice(2)}-${Date.now()}-${countId}`;
 }
 
@@ -33,5 +33,5 @@ export function getPageInfo(size = 10): PageInfo {
         pageSize   : size,
         currentPage: 1,
         total      : 0
-    }
+    };
 }

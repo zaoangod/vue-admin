@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import IconList from "./components/IconList.vue";
+import IconList from './components/IconList.vue';
 </script>
 <template>
     <div>

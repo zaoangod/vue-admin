@@ -1,1 +1,1 @@
-export {default as Empty} from "./index.vue";
+export {default as Empty} from './index.vue';

@@ -1,26 +1,26 @@
 <script lang="ts" setup>
-import store from "@/store";
-import {copyText, inputOnlyNumber, jsonParse, modifyData} from "@/utils";
-import {message, messageBox} from "@/utils/message";
-import {onMounted, onUnmounted, reactive} from "vue";
-import {CheckBox} from "@/components/CheckBox";
+import store from '@/store';
+import {copyText, inputOnlyNumber, jsonParse, modifyData} from '@/utils';
+import {message, messageBox} from '@/utils/message';
+import {onMounted, onUnmounted, reactive} from 'vue';
+import {CheckBox} from '@/components/CheckBox';
 
 const layoutInfo = store.layout.info;
 
 const project = store.projectInfo.link;
 
 function onMode() {
-    layoutInfo.layoutMode = layoutInfo.layoutMode === "full-header" ? "" : "full-header";
+    layoutInfo.layoutMode = layoutInfo.layoutMode === 'full-header' ? '' : 'full-header';
 }
 
 function useDefaultStyle() {
     return {
         /** layout 主题色 */
-        themeColor: "#1890FF",
+        themeColor: '#1890FF',
         /** 边框颜色 */
-        borderColor: "#d8dce5",
+        borderColor: '#d8dce5',
         /** 整体背景颜色 */
-        wholeBgColor: "#fff",
+        wholeBgColor: '#fff',
         /** 侧边菜单栏宽度 */
         sidebarWidth: 260,
         /** 顶部导航栏高度 */
@@ -30,7 +30,7 @@ function useDefaultStyle() {
         /** 主容器内边距 */
         contentPadding: 12,
         /** 主容器背景色 */
-        contentBgColor: "#eee",
+        contentBgColor: '#eee',
         /** 页面内边距 */
         pagePadding: 14,
         /** 菜单之间的间隔，上下 */
@@ -46,14 +46,14 @@ function useDefaultStyle() {
         /** 菜单 item 高度 */
         menuItemHeight: 38,
         /** 菜单 hover 背景颜色 */
-        menuItemHoverBg: "#ecf5ff",
+        menuItemHoverBg: '#ecf5ff',
         /** 菜单标题颜色 */
-        menuTitleColor: "#555",
+        menuTitleColor: '#555',
         /** 菜单文字颜色 */
-        menuTextColor: "#606266",
+        menuTextColor: '#606266',
         /** 菜单左右边距 */
-        menuPadding: 16,
-    }
+        menuPadding: 16
+    };
 }
 
 const styleVariable = reactive(useDefaultStyle());
@@ -82,148 +82,148 @@ const getStyleText = () => `
 }
 `;
 
-const id = "theme-diy-style";
+const id = 'theme-diy-style';
 
 interface Setting {
     label: string;
-    type: "title" | "color" | "number";
+    type: 'title' | 'color' | 'number';
     key: keyof typeof styleVariable;
 }
 
 const settingList: Array<Setting> = [
     {
-        label: "布局颜色配置",
-        type : "title",
-        key  : "themeColor",
+        label: '布局颜色配置',
+        type : 'title',
+        key  : 'themeColor'
     },
     {
-        label: "主题色",
-        type : "color",
-        key  : "themeColor",
+        label: '主题色',
+        type : 'color',
+        key  : 'themeColor'
     },
     {
-        label: "边框颜色",
-        type : "color",
-        key  : "borderColor",
+        label: '边框颜色',
+        type : 'color',
+        key  : 'borderColor'
     },
     {
-        label: "整体背景颜色",
-        type : "color",
-        key  : "wholeBgColor",
+        label: '整体背景颜色',
+        type : 'color',
+        key  : 'wholeBgColor'
     },
     {
-        label: "主容器背景色",
-        type : "color",
-        key  : "contentBgColor",
+        label: '主容器背景色',
+        type : 'color',
+        key  : 'contentBgColor'
     },
     {
-        label: "布局尺寸配置",
-        type : "title",
-        key  : "contentPadding",
+        label: '布局尺寸配置',
+        type : 'title',
+        key  : 'contentPadding'
     },
     {
-        label: "主容器内边距",
-        type : "number",
-        key  : "contentPadding",
+        label: '主容器内边距',
+        type : 'number',
+        key  : 'contentPadding'
     },
     {
-        label: "侧边菜单栏宽度",
-        type : "number",
-        key  : "sidebarWidth",
+        label: '侧边菜单栏宽度',
+        type : 'number',
+        key  : 'sidebarWidth'
     },
     {
-        label: "顶部导航栏高度",
-        type : "number",
-        key  : "navbarHeight",
+        label: '顶部导航栏高度',
+        type : 'number',
+        key  : 'navbarHeight'
     },
     {
-        label: "页面标签栏高度",
-        type : "number",
-        key  : "tagsHeight",
+        label: '页面标签栏高度',
+        type : 'number',
+        key  : 'tagsHeight'
     },
     {
-        label: "页面内边距",
-        type : "number",
-        key  : "pagePadding",
+        label: '页面内边距',
+        type : 'number',
+        key  : 'pagePadding'
     },
     {
-        label: "菜单配置",
-        type : "title",
-        key  : "menuGap",
+        label: '菜单配置',
+        type : 'title',
+        key  : 'menuGap'
     },
     {
-        label: "菜单上下之间的间隔",
-        type : "number",
-        key  : "menuGap",
+        label: '菜单上下之间的间隔',
+        type : 'number',
+        key  : 'menuGap'
     },
     {
-        label: "菜单缩进",
-        type : "number",
-        key  : "menuIndent",
+        label: '菜单缩进',
+        type : 'number',
+        key  : 'menuIndent'
     },
     {
-        label: "菜单标题字体大小",
-        type : "number",
-        key  : "menuTitleSize",
+        label: '菜单标题字体大小',
+        type : 'number',
+        key  : 'menuTitleSize'
     },
     {
-        label: "菜单标题高度",
-        type : "number",
-        key  : "menuTitleHeight",
+        label: '菜单标题高度',
+        type : 'number',
+        key  : 'menuTitleHeight'
     },
     {
-        label: "菜单 item 字体大小",
-        type : "number",
-        key  : "menuItemSize",
+        label: '菜单 item 字体大小',
+        type : 'number',
+        key  : 'menuItemSize'
     },
     {
-        label: "菜单 item 高度",
-        type : "number",
-        key  : "menuItemHeight",
+        label: '菜单 item 高度',
+        type : 'number',
+        key  : 'menuItemHeight'
     },
     {
-        label: "菜单左右边距",
-        type : "number",
-        key  : "menuPadding",
+        label: '菜单左右边距',
+        type : 'number',
+        key  : 'menuPadding'
     },
     {
-        label: "菜单 hover 背景颜色",
-        type : "color",
-        key  : "menuItemHoverBg",
+        label: '菜单 hover 背景颜色',
+        type : 'color',
+        key  : 'menuItemHoverBg'
     },
     {
-        label: "菜单标题颜色",
-        type : "color",
-        key  : "menuTitleColor",
+        label: '菜单标题颜色',
+        type : 'color',
+        key  : 'menuTitleColor'
     },
     {
-        label: "菜单文字颜色",
-        type : "color",
-        key  : "menuTextColor",
-    },
+        label: '菜单文字颜色',
+        type : 'color',
+        key  : 'menuTextColor'
+    }
 ];
 
 function setStyle(isInit = false) {
     let label = document.getElementById(id) as HTMLStyleElement;
     if (!label) {
-        label = document.createElement("style");
+        label = document.createElement('style');
         label.id = id;
         document.head.appendChild(label);
     }
     label.textContent = getStyleText();
     if (!isInit) {
-        message.success("应用成功！");
+        message.success('应用成功！');
         sessionStorage.setItem(id, JSON.stringify(styleVariable));
     }
 }
 
 function copyStyle() {
-    copyText(getStyleText(), function () {
+    copyText(getStyleText(), function() {
         messageBox({
-            title  : "复制成功！",
+            title  : '复制成功！',
             content: `<div>请将代码复制在<span class="the-tag blue" style="padding: 6px 8px;">src/styles/layout.scss</span>中即可</div>`
-        })
-    })
+        });
+    });
 }
 
 function resetStyle() {
@@ -235,33 +235,33 @@ function resetStyle() {
     }
 }
 
-function onPreset(theme: "green" | "black" | "red" | "purple") {
+function onPreset(theme: 'green' | 'black' | 'red' | 'purple') {
     switch (theme) {
-        case "green":
+        case 'green':
             modifyData(styleVariable, {
-                themeColor     : "#42b983",
-                menuItemHoverBg: "#e9f7f2"
+                themeColor     : '#42b983',
+                menuItemHoverBg: '#e9f7f2'
             });
             break;
 
-        case "black":
+        case 'black':
             modifyData(styleVariable, {
-                themeColor     : "#1a1a1a",
-                menuItemHoverBg: "#f5f5f5"
+                themeColor     : '#1a1a1a',
+                menuItemHoverBg: '#f5f5f5'
             });
             break;
 
-        case "red":
+        case 'red':
             modifyData(styleVariable, {
-                themeColor     : "#fc3d4c",
-                menuItemHoverBg: "#fff0f2"
+                themeColor     : '#fc3d4c',
+                menuItemHoverBg: '#fff0f2'
             });
             break;
 
-        case "purple":
+        case 'purple':
             modifyData(styleVariable, {
-                themeColor     : "#6122c7",
-                menuItemHoverBg: "#f4ecff"
+                themeColor     : '#6122c7',
+                menuItemHoverBg: '#f4ecff'
             });
             break;
 
@@ -271,7 +271,7 @@ function onPreset(theme: "green" | "black" | "red" | "purple") {
     setStyle();
 }
 
-type Colors = "themeColor" | "borderColor" | "wholeBgColor" | "contentBgColor" | "menuItemHoverBg" | "menuTitleColor" | "menuTextColor";
+type Colors = 'themeColor' | 'borderColor' | 'wholeBgColor' | 'contentBgColor' | 'menuItemHoverBg' | 'menuTitleColor' | 'menuTextColor';
 
 type Numbers = keyof Omit<typeof styleVariable, Colors>
 
@@ -288,8 +288,8 @@ const minValue: Record<Numbers, number> = {
     menuTitleHeight: 24,
     menuItemSize   : 12,
     menuItemHeight : 24,
-    menuPadding    : 6,
-}
+    menuPadding    : 6
+};
 
 let timer: number;
 
@@ -299,7 +299,7 @@ function onInput(e: Event, key: Numbers) {
     const value = Number(result);
     styleVariable[key] = value;
     clearTimeout(timer);
-    timer = setTimeout(function () {
+    timer = setTimeout(function() {
         if (value < minValue[key]) {
             styleVariable[key] = minValue[key];
         }
@@ -312,7 +312,7 @@ function onColor() {
     setStyle();
 }
 
-onMounted(function () {
+onMounted(function() {
     const cacheValue = jsonParse(sessionStorage.getItem(id), undefined);
 
     if (cacheValue) {
@@ -321,7 +321,7 @@ onMounted(function () {
     }
 });
 
-onUnmounted(function () {
+onUnmounted(function() {
     clearTimeout(timer);
 });
 </script>

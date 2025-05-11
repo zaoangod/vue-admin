@@ -2,8 +2,8 @@
 let id = 0;
 
 export default {
-    name: "CheckBox"
-}
+    name: 'CheckBox'
+};
 </script>
 <script lang="ts" setup>
 
@@ -18,19 +18,19 @@ const props = defineProps({
     },
     label     : {
         type   : String,
-        default: ""
-    },
-})
+        default: ''
+    }
+});
 
 const emit = defineEmits<{
-    (event: "update:modelValue", val: boolean): void
-    (event: "change", val: boolean): void
+    (event: 'update:modelValue', val: boolean): void
+    (event: 'change', val: boolean): void
 }>();
 
 function onValue() {
     const value = !props.modelValue;
-    emit("update:modelValue", value);
-    emit("change", value);
+    emit('update:modelValue', value);
+    emit('change', value);
 }
 
 </script>

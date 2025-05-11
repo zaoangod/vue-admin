@@ -1,14 +1,14 @@
 <script lang="ts">
-import store from "@/store";
+import store from '@/store';
 
 export default {
-    name: "page-404",
+    name: 'page-404',
     data() {
         return {
             project: store.projectInfo
-        }
+        };
     }
-}
+};
 </script>
 <template>
     <div class="page-404 fvc">

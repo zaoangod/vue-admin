@@ -3,17 +3,17 @@
  * 滚动条组件
  */
 export default {
-    name: "Scrollbar"
-}
+    name: 'Scrollbar'
+};
 </script>
 <script lang="ts" setup>
-import {onMounted, ref, reactive, onUnmounted} from "vue";
+import {onMounted, ref, reactive, onUnmounted} from 'vue';
 
 const props = defineProps({
     /** 滚动条颜色 */
     thumbColor: {
         type   : String,
-        default: "rgba(147, 147, 153, 0.45)"
+        default: 'rgba(147, 147, 153, 0.45)'
     },
     /** 滚动条厚度 */
     thumbSize: {
@@ -41,21 +41,21 @@ const thumbY = ref<HTMLElement>();
 /** 滚动条节点样式 */
 const thumbStyle = reactive({
     x: {
-        width          : "",
-        height         : "",
-        left           : "",
-        bottom         : "",
-        transform      : "",
-        borderRadius   : "",
+        width          : '',
+        height         : '',
+        left           : '',
+        bottom         : '',
+        transform      : '',
+        borderRadius   : '',
         backgroundColor: props.thumbColor
     },
     y: {
-        width          : "",
-        height         : "",
-        top            : "",
-        right          : "",
-        transform      : "",
-        borderRadius   : "",
+        width          : '',
+        height         : '',
+        top            : '',
+        right          : '',
+        transform      : '',
+        borderRadius   : '',
         backgroundColor: props.thumbColor
     }
 });
@@ -65,15 +65,15 @@ const showThumb = ref(false);
 /** 更新包裹容器样式 */
 function updateWrapStyle() {
     const parent = el.value!.parentElement!;
-    parent.style.overflow = "hidden"; // 这里一定要将父元素设置超出隐藏，不然弹性盒子布局时会撑开宽高
+    parent.style.overflow = 'hidden'; // 这里一定要将父元素设置超出隐藏，不然弹性盒子布局时会撑开宽高
 }
 
 /** 初始化滚动指示器样式 */
 function initThumbStyle() {
-    thumbStyle.y.right = thumbStyle.y.top = "0px";
-    thumbStyle.y.width = props.thumbSize + "px";
-    thumbStyle.x.bottom = thumbStyle.x.left = "0px";
-    thumbStyle.x.height = props.thumbSize + "px";
+    thumbStyle.y.right = thumbStyle.y.top = '0px';
+    thumbStyle.y.width = props.thumbSize + 'px';
+    thumbStyle.x.bottom = thumbStyle.x.left = '0px';
+    thumbStyle.x.height = props.thumbSize + 'px';
     thumbStyle.x.borderRadius = thumbStyle.y.borderRadius = `${props.thumbSize / 2}px`;
 }
 
@@ -88,7 +88,7 @@ function updateThumbStyle() {
         if (height >= 100) {
             height = 0;
         }
-        thumbStyle.y.height = height + "%";
+        thumbStyle.y.height = height + '%';
         thumbStyle.y.transform = `translate3d(0, ${wrapEl.scrollTop / wrapEl.scrollHeight * wrapEl.clientHeight}px, 0)`;
 
         // console.log("scrollWidth >>", wrapEl.scrollWidth);
@@ -99,7 +99,7 @@ function updateThumbStyle() {
         if (width >= 100) {
             width = 0;
         }
-        thumbStyle.x.width = width + "%";
+        thumbStyle.x.width = width + '%';
         thumbStyle.x.transform = `translate3d(${wrapEl.scrollLeft / wrapEl.scrollWidth * wrapEl.clientWidth}px, 0, 0)`;
         // console.log("------------------------------------");
     }
@@ -169,29 +169,29 @@ let observer: ResizeObserver;
 
 const view = ref<HTMLElement>();
 
-onMounted(function () {
+onMounted(function() {
     // console.log("onMounted >>", el.value!.clientHeight);
     // console.log("scrollbarSize >>", scrollbarSize);
     updateWrapStyle();
     initThumbStyle();
-    document.addEventListener("mousedown", onDragStart);
-    document.addEventListener("mousemove", onDragMove);
-    document.addEventListener("mouseup", onDragEnd);
-    observer = new ResizeObserver(function () {
+    document.addEventListener('mousedown', onDragStart);
+    document.addEventListener('mousemove', onDragMove);
+    document.addEventListener('mouseup', onDragEnd);
+    observer = new ResizeObserver(function() {
         updateThumbStyle();
     });
     view.value && observer.observe(view.value);
 });
 
-onUnmounted(function () {
-    document.removeEventListener("mousedown", onDragStart);
-    document.removeEventListener("mousemove", onDragMove);
-    document.removeEventListener("mouseup", onDragEnd);
+onUnmounted(function() {
+    document.removeEventListener('mousedown', onDragStart);
+    document.removeEventListener('mousemove', onDragMove);
+    document.removeEventListener('mouseup', onDragEnd);
     observer.disconnect();
 });
 
 defineExpose({
-    updateThumbStyle,
+    updateThumbStyle
 });
 </script>
 <template>

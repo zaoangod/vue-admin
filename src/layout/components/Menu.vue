@@ -1,17 +1,17 @@
 <script lang="ts">
 /** 侧边菜单组件 */
 export default {
-    name: "Menu"
-}
+    name: 'Menu'
+};
 </script>
 <script lang="ts" setup>
-import store from "@/store";
-import MenuItem from "./MenuItem.vue";
-import {ref, watch} from "vue";
-import type {RouteItem} from "@/router/types";
-import type {LayoutType} from "@/store/types";
-import {getMenuId, useLayoutRoute} from "./hooks";
-import {Empty} from "@/components/Empty";
+import store from '@/store';
+import MenuItem from './MenuItem.vue';
+import {ref, watch} from 'vue';
+import type {RouteItem} from '@/router/types';
+import type {LayoutType} from '@/store/types';
+import {getMenuId, useLayoutRoute} from './hooks';
+import {Empty} from '@/components/Empty';
 
 const props = defineProps({
     /**
@@ -21,7 +21,7 @@ const props = defineProps({
      */
     mergeOnlyOneChild: {
         type   : Number,
-        default: 0,
+        default: 0
     }
 });
 
@@ -46,8 +46,8 @@ function formatMenuList(list: Array<RouteItem>) {
             isOpen: false,
             title : item.meta.title,
             icon  : item.meta.icon,
-            link  : item.meta.link,
-        }
+            link  : item.meta.link
+        };
         // 递归下级列表
         if (item.children && item.children.length) {
             menu.children = formatMenuList(item.children);
@@ -161,7 +161,7 @@ function updateActive() {
 
 watch(
     () => layoutInfo.keyword,
-    function (val) {
+    function(val) {
         const list = JSON.parse(JSON.stringify(formatList));
         if (val) {
             const filterList = hasKeyword(list);
@@ -170,17 +170,17 @@ watch(
             menuList.value = list;
             updateActive();
         }
-    },
+    }
 );
 
 watch(
     () => route.path,
-    function () {
+    function() {
         updateActive();
     },
     {
-        immediate: true,
-    },
+        immediate: true
+    }
 );
 </script>
 <template>

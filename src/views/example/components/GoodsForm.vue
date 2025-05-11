@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type {Goods} from "@/store/Goods";
-import {type PropType} from "vue";
+import type {Goods} from '@/store/Goods';
+import {type PropType} from 'vue';
 
 const props = defineProps({
     form: {

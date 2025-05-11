@@ -1,26 +1,26 @@
 /**
  * 项目配置模块
  */
-const config = (function () {
+const config = (function() {
     /** 当前项目运行地址 */
     let url = location.origin;
     /** 当前环境 */
-    let env: "dev" | "test" | "prod" = "dev";
+    let env: 'dev' | 'test' | 'prod' = 'dev';
     /** 请求域名 */
-    let requestUrl = "";
+    let requestUrl = '';
 
     // 测试环境
-    if (location.hostname === "test.com") {
-        env = "test";
+    if (location.hostname === 'test.com') {
+        env = 'test';
         requestUrl = `https://api.test.com`;
-        url = "https://test.com";
+        url = 'https://test.com';
     }
 
     // 正式环境
-    if (location.hostname === "prod.com") {
-        env = "prod";
-        requestUrl = "https://api.prod.com";
-        url = "https://prod.com";
+    if (location.hostname === 'prod.com') {
+        env = 'prod';
+        requestUrl = 'https://api.prod.com';
+        url = 'https://prod.com';
     }
 
     return {
@@ -34,13 +34,13 @@ const config = (function () {
         },
         /** 是否开发环境 */
         get isDev() {
-            return env === "dev";
+            return env === 'dev';
         },
         /** 当前项目运行地址 */
         get webUrl() {
             return url;
-        },
-    }
+        }
+    };
 })();
 
 export default config;

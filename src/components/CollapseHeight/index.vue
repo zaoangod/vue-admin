@@ -1,12 +1,12 @@
 <script lang="ts">
 /** 高度折叠过渡组件 */
 export default {
-    name: "CollapseHeight"
-}
+    name: 'CollapseHeight'
+};
 </script>
 <script lang="ts" setup>
-import {ref, watch, onMounted} from "vue";
-import {show, hide} from "./index";
+import {ref, watch, onMounted} from 'vue';
+import {show, hide} from './index';
 
 const props = defineProps({
     show: {
@@ -16,18 +16,18 @@ const props = defineProps({
 
 const collapseBox = ref<HTMLElement>();
 
-watch(() => props.show, function (val, before) {
+watch(() => props.show, function(val, before) {
     if (val === before) return;
     val ? show(collapseBox.value!) : hide(collapseBox.value!);
 });
 
-onMounted(function () {
+onMounted(function() {
     const el = collapseBox.value!;
-    el.addEventListener("transitionend", function () {
+    el.addEventListener('transitionend', function() {
         if (props.show) {
-            el.style.height = "";
+            el.style.height = '';
         } else {
-            el.style.display = "none";
+            el.style.display = 'none';
             // el.style.height = "";
         }
     });

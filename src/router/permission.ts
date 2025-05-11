@@ -1,22 +1,22 @@
-import store from "../store";
-import NProgress from "nprogress";
-import "nprogress/nprogress.css";
-import type {Router} from "vue-router";
-import {dynamicRouters} from "./dynamic";
-import type {RouteItem} from "./types";
+import store from '../store';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
+import type {Router} from 'vue-router';
+import {dynamicRouters} from './dynamic';
+import type {RouteItem} from './types';
 
 // NProgress.configure({ showSpinner: false });
 
 /** 路由初始化时信息对象 */
 const routerTo = {
-    path : "/",
+    path : '/',
     query: {}
-}
+};
 
 /**
  * 重定向到`/404`的路由名
  */
-const redirectRouteName = "redirect404";
+const redirectRouteName = 'redirect404';
 
 /**
  * 路由实例
@@ -100,7 +100,7 @@ export function initPermission(vueRouter: Router, baseRoutes: Array<RouteItem>) 
     // 设置路由实例
     router = vueRouter;
 
-    router.beforeEach(async function (to, from, next) {
+    router.beforeEach(async function(to, from, next) {
         NProgress.start();
 
         if (store.user.info.token) {
@@ -125,7 +125,7 @@ export function initPermission(vueRouter: Router, baseRoutes: Array<RouteItem>) 
                 if (!router.hasRoute(redirectRouteName)) {
                     // router.addRoute({ path: "/:catchAll(.*)", name: redirectRouteName, redirect: "/404" });
                     // 不重定向到`/404`
-                    router.addRoute({...baseRoutes[1], path: "/:catchAll(.*)", name: redirectRouteName});
+                    router.addRoute({...baseRoutes[1], path: '/:catchAll(.*)', name: redirectRouteName});
                 }
 
                 store.layout.completeRouters = baseRoutes.concat(store.layout.addRouters);
@@ -133,12 +133,12 @@ export function initPermission(vueRouter: Router, baseRoutes: Array<RouteItem>) 
                 next({...to, replace: true});
             }
         } else {
-            if (to.path === "/login") {
+            if (to.path === '/login') {
                 next();
             } else {
                 routerTo.path = to.path;
                 routerTo.query = to.query;
-                next({path: "/login"});
+                next({path: '/login'});
                 NProgress.done();
             }
         }
@@ -151,7 +151,7 @@ export function initPermission(vueRouter: Router, baseRoutes: Array<RouteItem>) 
         if (to.meta && to.meta.title) {
             document.title = to.meta.title as string;
         }
-    })
+    });
 }
 
 /**
@@ -162,7 +162,7 @@ export function openNextPage() {
     router.replace({
         path : routerTo.path,
         query: routerTo.query
-    })
+    });
 }
 
 /**
@@ -177,7 +177,7 @@ export function removeRoutes() {
             router.removeRoute(item.name);
         }
     }
-    routerTo.path = "/";
+    routerTo.path = '/';
     routerTo.query = {};
     // 和上面对应的 404
     router.removeRoute(redirectRouteName);

@@ -1,15 +1,15 @@
 <script lang="ts">
 /** 顶部栏组件 */
 export default {
-    name: "HeaderBar"
-}
+    name: 'HeaderBar'
+};
 </script>
 <script lang="ts" setup>
-import BreadCrumb from "./BreadCrumb.vue";
-import store from "@/store";
-import {removeRoutes} from "@/router/permission";
-import TagList from "./TagList.vue";
-import {useLayoutRoute} from "./hooks";
+import BreadCrumb from './BreadCrumb.vue';
+import store from '@/store';
+import {removeRoutes} from '@/router/permission';
+import TagList from './TagList.vue';
+import {useLayoutRoute} from './hooks';
 
 const layoutInfo = store.layout.info;
 const userInfo = store.user.info;
@@ -19,11 +19,11 @@ function onSwitch() {
     layoutInfo.showSidebar = !layoutInfo.showSidebar;
 }
 
-const defaultAvatar = "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif";
+const defaultAvatar = 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif';
 
 function onLogout() {
     store.user.reset();
-    router.push("/login").then(() => {
+    router.push('/login').then(() => {
         // 清空历史记录，确保切换用户类型时缓存不存在的路由记录，没有用户类型权限时可以忽略
         layoutInfo.tagList = [];
 
@@ -84,7 +84,7 @@ function onLogout() {
             <BreadCrumb class="f1" />
             <div class="user-info-box f-vertical">
                 <img :src="userInfo.avatar || defaultAvatar" class="avatar">
-                <span class="the-tag green mr-[10px]">{{ userInfo.name || userInfo.account || "用户未设置昵称" }}</span>
+                <span class="the-tag green mr-[10px]">{{ userInfo.name || userInfo.account || '用户未设置昵称' }}</span>
                 <button class="logout f-vertical" @click="onLogout()">
                     <svg-icon name="exit" />
                     <span>退出登录</span>

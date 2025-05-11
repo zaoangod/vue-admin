@@ -1,7 +1,7 @@
-import {createRouter, createWebHashHistory} from "vue-router";
-import {initPermission} from "./permission";
-import Page404 from "@/views/page-404.vue";
-import type {RouteItem} from "./types";
+import {createRouter, createWebHashHistory} from 'vue-router';
+import {initPermission} from './permission';
+import Page404 from '@/views/page-404.vue';
+import type {RouteItem} from './types';
 
 /**
  * 基础路由
@@ -12,20 +12,20 @@ import type {RouteItem} from "./types";
  */
 const base: Array<RouteItem> = [
     {
-        path     : "/login",
-        name     : "login",
-        component: () => import("../views/login.vue"),
-        meta     : {hidden: true, title: "请登录"},
+        path     : '/login',
+        name     : 'login',
+        component: () => import('../views/login.vue'),
+        meta     : {hidden: true, title: '请登录'}
     }, {
-        path     : "/404",
-        name     : "page-404",
+        path     : '/404',
+        name     : 'page-404',
         component: Page404,
-        meta     : {hidden: true, title: "不存在该页面"},
+        meta     : {hidden: true, title: '不存在该页面'}
     }, {
-        path     : "/401",
-        name     : "page-401",
-        component: () => import("../views/page-401.vue"),
-        meta     : {hidden: true, title: "暂无权限访问"},
+        path     : '/401',
+        name     : 'page-401',
+        component: () => import('../views/page-401.vue'),
+        meta     : {hidden: true, title: '暂无权限访问'}
     }
 ];
 

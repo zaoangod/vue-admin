@@ -1,24 +1,24 @@
-import ModuleUser from "./User";
-import imgLogo from "../assets/logo.png";
-import ModuleLayout from "./Layout";
-import ModuleGoods from "./Goods";
+import ModuleUser from './User';
+import imgLogo from '../assets/logo.png';
+import ModuleLayout from './Layout';
+import ModuleGoods from './Goods';
 
 class ModuleStore {
     /** 项目信息 */
     readonly projectInfo = {
-        title: "Vue Typescript Admin",
-        name : "XXX后台管理平台",
+        title: 'Vue Typescript Admin',
+        name : 'XXX后台管理平台',
         logo : imgLogo,
-        link : "https://github.com/Travis-hjs/vue-admin",
-        email: "1141752341@qq.com"
-    }
+        link : 'https://github.com/Travis-hjs/vue-admin',
+        email: '1141752341@qq.com'
+    };
     /** `layout`状态模块 */
     readonly layout = new ModuleLayout();
     /** 用户状态模块 */
     readonly user = new ModuleUser();
 
     constructor() {
-        console.log("%c ModuleStore init", "color: #409EFF");
+        console.log('%c ModuleStore init', 'color: #409EFF');
     }
 
     // 以下为测试代码，可随时删除
