@@ -35,21 +35,21 @@ function onUpload(info: UploadChange<"banner"|"logo">) {
 
 - 参数说明
 
-| props |  类型 | 是否必选 | 说明 |
-| --- | --- | --- | --- |
-| src | string | 是 | 组件上传图片路径 |
-| uploadId | string/number | 否 | 传组件唯一标记 |
-| width | string | 否 | 图片宽度 |
-| height | string | 否 | 图片高度 |
-| autoHeight | boolean | 否 | 是否自动高度 |
-| tip | string/number | 否 | 图片上传提示 |
-| maxSize | number | 否 | 上传图片最大体积，单位`M` |
-| disabled | boolean | 否 | 是否禁用状态 |
+| props      | 类型            | 是否必选 | 说明             |
+|------------|---------------|------|----------------|
+| src        | string        | 是    | 组件上传图片路径       |
+| uploadId   | string/number | 否    | 传组件唯一标记        |
+| width      | string        | 否    | 图片宽度           |
+| height     | string        | 否    | 图片高度           |
+| autoHeight | boolean       | 否    | 是否自动高度         |
+| tip        | string/number | 否    | 图片上传提示         |
+| maxSize    | number        | 否    | 上传图片最大体积，单位`M` |
+| disabled   | boolean       | 否    | 是否禁用状态         |
 
 - 事件说明
 
-| 事件名 | 说明 |
-| --- | --- |
+| 事件名    | 说明                          |
+|--------|-----------------------------|
 | change | 上传成功时回调，参数类型为`UploadChange` |
 
 ## 上传包裹组件

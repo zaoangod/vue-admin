@@ -92,7 +92,7 @@ body {
     --menu-text-color: #606266;
     // 菜单左右边距
     --menu-padding: 16px;
-  
+
     width: 100%;
     height: 100%;
     min-height: 100vh;
@@ -102,30 +102,31 @@ body {
     padding-left: var(--sidebar-width);
     transition: var(--transition);
   }
-  
+
   .the-layout.full-header {
     .the-layout-header {
       padding-left: 0px;
     }
+
     .the-layout-sidebar {
       height: calc(100vh - var(--navbar-height));
       top: calc(var(--navbar-height));
       z-index: calc(var(--z-index) - 1);
     }
   }
-  
+
   .the-layout.collapsed-sidebar {
     padding-left: 0;
-  
+
     .the-layout-sidebar {
       transform: translate3d(-100%, 0, 0);
     }
-  
+
     .the-layout-header {
       padding-left: 0;
     }
   }
-  
+
   .the-layout-header {
     width: 100%;
     background-color: var(--whole-bg-color);
@@ -137,7 +138,7 @@ body {
     transition: var(--transition);
     box-shadow: var(--header-shadow);
   }
-  
+
   .the-layout-navbar {
     width: 100%;
     height: var(--navbar-height);
@@ -146,30 +147,30 @@ body {
     background: var(--whole-bg-color);
     box-shadow: var(--header-shadow);
     overflow: hidden;
-  
+
     .menu-fold {
       width: var(--navbar-height);
       height: 100%;
       cursor: pointer;
       transition: var(--transition);
       user-select: none;
-  
+
       &:hover {
         background: rgba(0, 0, 0, 0.08);
       }
-  
+
       .the-icon {
         transition: var(--transition);
       }
     }
-  
+
     .menu-fold-actived {
       .the-icon {
         transform: rotate(180deg);
       }
     }
   }
-  
+
   .the-layout-sidebar {
     display: flex;
     flex-direction: column;
@@ -184,16 +185,16 @@ body {
     transition: var(--transition);
     box-shadow: var(--sidebar-shadow);
   }
-  
+
   .the-layout-sidebar-content {
     width: 100%;
     padding: 0 var(--page-padding);
-  
+
     &.padding-full {
       padding: var(--page-padding);
     }
   }
-  
+
   .the-layout-content {
     background-color: var(--content-bg-color);
     padding: var(--content-padding);
@@ -203,7 +204,7 @@ body {
     // TODO: 设置一个内容区域高度变量给外面页面使用
     --layout-content-height: calc(100vh - var(--navbar-height) - (var(--content-padding) * 2) - (var(--page-padding) * 2));
   }
-  
+
   .the-layout.has-tag-list {
     &.full-header {
       .the-layout-sidebar {
@@ -211,30 +212,30 @@ body {
         top: calc(var(--navbar-height) + var(--tags-height));
       }
     }
-  
+
     .the-layout-content {
       padding-top: calc(var(--navbar-height) + var(--tags-height) + var(--content-padding));
       // TODO: 设置一个内容区域高度变量给外面页面使用
       --layout-content-height: calc(100vh - var(--navbar-height) - var(--tags-height) - (var(--content-padding) * 2) - (var(--page-padding) * 2));
     }
   }
-  
+
   .the-layout-page {
     width: 100%;
     min-height: 100%;
     background-color: var(--whole-bg-color);
     padding: var(--page-padding);
   }
-  
+
   .the-layout-menu {
     --level: 0;
-  
+
     width: 100%;
     margin-top: var(--menu-gap);
-  
+
     .the-layout-menu-arrow {
       position: relative;
-    
+
       &::after,
       &::before {
         content: "";
@@ -245,35 +246,35 @@ body {
         border-radius: 2px;
         background-color: var(--menu-title-color);
       }
-  
+
       &::before {
         transform: rotate(-45deg) translate(2.5px);
       }
-    
+
       &::after {
         transform: rotate(45deg) translate(-2.5px);
-        
+
       }
     }
-    
+
     .the-layout-menu-title {
       @include menu-block(var(--menu-title-height), var(--menu-title-color));
       padding-left: calc(var(--menu-padding) + var(--menu-indent) * var(--level));
       font-size: var(--menu-title-size);
       font-weight: 500;
-    
+
       &.is-open {
         .the-layout-menu-arrow {
           &::before {
             transform: rotate(45deg) translate(2.5px);
           }
-    
+
           &::after {
             transform: rotate(-45deg) translate(-2.5px);
           }
         }
       }
-    
+
       &::after {
         content: '';
         position: absolute;
@@ -284,36 +285,36 @@ body {
         transition: var(--transition);
         background-color: transparent;
       }
-    
+
       &.is-current {
         color: var(--theme-color);
-        
+
         &::after {
           background-color: var(--theme-color);
         }
-    
+
         .the-layout-menu-arrow::after,
         .the-layout-menu-arrow::before {
           background-color: var(--theme-color);
         }
-        
+
         .menu-icon {
           color: var(--theme-color);
         }
       }
     }
-    
+
     .the-layout-menu-list {
       width: 100%;
       overflow: hidden;
       // padding-left: var(--menu-indent);
       transition: var(--transition);
-  
+
       .is-current::after {
         background-color: transparent;
       }
     }
-    
+
     .the-layout-menu-link {
       @include menu-block(var(--menu-item-height), var(--menu-text-color));
       padding-left: calc(var(--menu-padding) + var(--menu-indent) * (var(--level) + 1));
@@ -321,46 +322,46 @@ body {
       font-size: var(--menu-item-size);
     }
   }
-  
+
   .layout-breadcrumb {
     padding: 0 16px;
     position: relative;
   }
-  
+
   .layout-breadcrumb-item {
     padding: 4px 0;
     font-size: 15px;
     color: #555;
-  
+
     a {
       transition: var(--transition);
     }
-  
+
     &:hover {
       a {
         color: var(--theme-color);
       }
     }
-  
+
     .separator {
       padding: 0 8px;
     }
   }
-  
+
   .layout-breadcrumb-item.last {
     color: #afaeae;
-  
+
     a {
       cursor: no-drop;
     }
-  
+
     &:hover {
       a {
         color: #afaeae;
       }
     }
   }
-  
+
   .the-layout-tag-box {
     width: 100%;
     padding: 0 12px;
@@ -368,7 +369,7 @@ body {
     background-color: var(--whole-bg-color);
     box-shadow: var(--header-shadow);
   }
-  
+
   .the-layout-tags {
     width: 100%;
     height: var(--tags-height);
@@ -376,7 +377,7 @@ body {
     display: flex;
     flex-wrap: nowrap;
   }
-  
+
   .the-layout-tag {
     display: flex;
     flex-wrap: nowrap;
@@ -393,28 +394,28 @@ body {
     color: var(--menu-text-color);
     background-color: var(--whole-bg-color);
     transition: var(--transition);
-  
+
     &:visited,
     &:link {
       color: var(--menu-text-color);
     }
-  
+
     &.is-active {
       border-color: var(--theme-color);
       border-style: dashed;
       color: var(--theme-color);
-    
+
       .close {
         &::after {
           background-color: var(--theme-color);
         }
-    
+
         &::before {
           background-color: var(--theme-color);
         }
       }
     }
-  
+
     .close {
       display: block;
       width: 16px;
@@ -426,21 +427,21 @@ body {
       margin-left: 4px;
       transition: var(--transition);
       @include mixins.close-icon(var(--menu-text-color), 8px);
-  
+
       &:hover {
         background-color: #b4bccc;
-  
+
         &::after {
           background-color: #fff;
         }
-  
+
         &::before {
           background-color: #fff;
         }
       }
     }
   }
-  
+
   .the-layout-tag-menu {
     position: fixed;
     z-index: 2100;
@@ -451,29 +452,30 @@ body {
     box-shadow: 0px 0px 12px rgba(0, 0, 0, .12);
     background-color: #fff;
   }
-  
+
   .the-layout-tag-menu-item {
     font-size: 14px;
     padding: 5px 16px;
     color: var(--menu-text-color);
     line-height: 22px;
     cursor: pointer;
+
     &:hover {
       background-color: var(--menu-item-hover-bg);
       color: var(--theme-color);
     }
   }
-  
+
   .the-logo-box {
     width: 100%;
     height: var(--navbar-height);
     padding: 0 10px;
   }
-  
+
   .the-logo-link {
     width: 100%;
     height: 100%;
-  
+
     .the-logo {
       width: 32px;
       height: 32px;
@@ -481,19 +483,19 @@ body {
       display: inline-block;
     }
   }
-  
+
   .the-logo-title {
     color: var(--menu-title-color);
     font-weight: 600;
     font-size: 14px;
   }
-  
+
   .the-layout-search-box {
     width: 100%;
     padding-bottom: var(--page-padding);
     border-bottom: solid 1px var(--border-color);
     position: relative;
-  
+
     input {
       width: 100%;
       height: 36px;
@@ -504,16 +506,16 @@ body {
       line-height: 1;
       color: var(--menu-text-color);
       transition: var(--transition);
-  
+
       &::placeholder {
         color: #999;
       }
-  
+
       &:focus {
         border-color: var(--theme-color);
       }
     }
-  
+
     .the-layout-search-icon {
       position: absolute;
       top: 10px;
@@ -523,7 +525,7 @@ body {
       color: var(--menu-text-color);
     }
   }
-  
+
   .the-layout-to-top {
     width: 38px;
     height: 38px;
@@ -536,7 +538,7 @@ body {
     bottom: var(--page-padding);
     z-index: calc(var(--z-index) - 1);
     transition: var(--transition);
-  
+
     &.hidden {
       visibility: hidden;
       opacity: 0;

@@ -124,10 +124,12 @@ export function saveUserInfo(params: { account: string | number, password: strin
  * formData.append("img", file);
  * uploadImg(formData).then(res => console.log(res))
  * ```
- */
+
+*/
 export function uploadImg(formData: FormData) {
-  return request("POST", "/uploadImg", formData);
+return request("POST", "/uploadImg", formData);
 }
+
 ```
 
 ## 接口返回数据泛型约束

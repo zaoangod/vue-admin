@@ -4,30 +4,30 @@ export { default as CollapseHeight } from "./index.vue";
 
 /**
  * 元素出现
- * @param el 
- * @returns 
+ * @param el
+ * @returns
  */
 export function show(el: HTMLElement) {
-  if (!el) return;
-  el.style.display = "";
-  el.style.height = "";
-  // console.log(el.clientHeight, el.offsetHeight);
-  const height = el.clientHeight;
-  el.style.height = "0px";
-  el.offsetHeight; // 回流
-  el.style.height = `${height}px`;
+    if (!el) return;
+    el.style.display = "";
+    el.style.height = "";
+    // console.log(el.clientHeight, el.offsetHeight);
+    const height = el.clientHeight;
+    el.style.height = "0px";
+    el.offsetHeight; // 回流
+    el.style.height = `${ height }px`;
 }
 
 /**
  * 元素隐藏
- * @param el 
+ * @param el
  */
 export function hide(el: HTMLElement) {
-  if (!el) return;
-  const height = el.clientHeight;
-  el.style.height = `${height}px`;
-  el.offsetHeight; // 回流
-  el.style.height = "0px";
+    if (!el) return;
+    const height = el.clientHeight;
+    el.style.height = `${ height }px`;
+    el.offsetHeight; // 回流
+    el.style.height = "0px";
 }
 
 // TODO: 展开时有问题

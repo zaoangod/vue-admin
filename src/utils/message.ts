@@ -2,48 +2,48 @@ import { useZIndex } from "@/hooks/common";
 import { isType } from "./index";
 
 export namespace Message {
-  export interface Option {
-    /** 持续时间（毫秒），默认`3000` */
-    duration?: number
-  }
+    export interface Option {
+        /** 持续时间（毫秒），默认`3000` */
+        duration?: number
+    }
 
-  /** 消息类型 */
-  export type Type = "info" | "success" | "warning" | "error"
+    /** 消息类型 */
+    export type Type = "info" | "success" | "warning" | "error"
 }
 
 /**
  * 消息提醒功能
- * @param params 
+ * @param params
  */
 function useMessage(params: Message.Option = {}) {
-  const doc = document;
-  const cssModule = `__${Math.random().toString(36).slice(2, 7)}`;
-  const className = {
-    item: `msg-item${cssModule}`,
-    box: `msg-box${cssModule}`,
-    hide: `hide${cssModule}`,
-    text: `msg-text${cssModule}`,
-    icon: `msg-icon${cssModule}`,
-  };
-  const style = doc.createElement("style");
-  const cssText = `
-  .${className.item}, ${className.box}, .${className.icon}, .${className.text} {
+    const doc = document;
+    const cssModule = `__${ Math.random().toString(36).slice(2, 7) }`;
+    const className = {
+        item: `msg-item${ cssModule }`,
+        box: `msg-box${ cssModule }`,
+        hide: `hide${ cssModule }`,
+        text: `msg-text${ cssModule }`,
+        icon: `msg-icon${ cssModule }`,
+    };
+    const style = doc.createElement("style");
+    const cssText = `
+  .${ className.item }, ${ className.box }, .${ className.icon }, .${ className.text } {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
   }
-  .${className.item} {
+  .${ className.item } {
     position: fixed;
     top: 0;
     width: 100vw;
     display: flex;
     justify-content: center;
-    animation: ${className.item}-move .4s;
+    animation: ${ className.item }-move .4s;
     transition: .4s all;
     opacity: 1;
     pointer-events: none;
   }
-  .${className.box} {
+  .${ className.box } {
     position: relative;
     display: flex;
     width: fit-content;
@@ -55,7 +55,7 @@ function useMessage(params: Message.Option = {}) {
     overflow: hidden;
     pointer-events: auto;
   }
-  .${className.box}::after {
+  .${ className.box }::after {
     content: "";
     position: absolute;
     left: 0;
@@ -63,7 +63,7 @@ function useMessage(params: Message.Option = {}) {
     height: 100%;
     width: 4px;
   }
-  @keyframes ${className.item}-move {
+  @keyframes ${ className.item }-move {
     0% {
       opacity: 0;
       transform: translate3d(0, -100%, 0);
@@ -73,12 +73,12 @@ function useMessage(params: Message.Option = {}) {
       transform: translate3d(0, 0%, 0);
     }
   }
-  .${className.item}.${className.hide} {
+  .${ className.item }.${ className.hide } {
     opacity: 0;
     /* transform: translate3d(0, -100%, 0); */
     transform: translate3d(0, -100%, 0) scale(0);
   }
-  .${className.icon} {
+  .${ className.icon } {
     display: inline-block;
     width: 18px;
     min-width: 18px;
@@ -89,31 +89,31 @@ function useMessage(params: Message.Option = {}) {
     margin-right: 6px;
     position: relative;
   }
-  .${className.text} {
+  .${ className.text } {
     font-size: 14px;
     line-height: 18px;
     color: #555;
   }
-  .${className.icon}::after,
-  .${className.icon}::before {
+  .${ className.icon }::after,
+  .${ className.icon }::before {
     position: absolute;
     content: "";
     background-color: #fff;
   }
-  .${className.box}.info .${className.icon}, .${className.box}.info::after {
+  .${ className.box }.info .${ className.icon }, .${ className.box }.info::after {
     background-color: #1890ff;
   }
-  .${className.box}.success .${className.icon}, .${className.box}.success::after {
+  .${ className.box }.success .${ className.icon }, .${ className.box }.success::after {
     background-color: #52c41a;
   }
-  .${className.box}.warning .${className.icon}, .${className.box}.warning::after {
+  .${ className.box }.warning .${ className.icon }, .${ className.box }.warning::after {
     background-color: #faad14;
   }
-  .${className.box}.error .${className.icon}, .${className.box}.error::after {
+  .${ className.box }.error .${ className.icon }, .${ className.box }.error::after {
     background-color: #ff4d4f;
   }
-  .${className.box}.info .${className.icon}::after,
-  .${className.box}.warning .${className.icon}::after {
+  .${ className.box }.info .${ className.icon }::after,
+  .${ className.box }.warning .${ className.icon }::after {
     top: 15%;
     left: 50%;
     margin-left: -1px;
@@ -121,16 +121,16 @@ function useMessage(params: Message.Option = {}) {
     height: 2px;
     border-radius: 50%;
   }
-  .${className.box}.info .${className.icon}::before,
-  .${className.box}.warning .${className.icon}::before {
+  .${ className.box }.info .${ className.icon }::before,
+  .${ className.box }.warning .${ className.icon }::before {
     top: calc(15% + 4px);
     left: 50%;
     margin-left: -1px;
     width: 2px;
     height: 40%;
   }
-  .${className.box}.error .${className.icon}::after,
-  .${className.box}.error .${className.icon}::before {
+  .${ className.box }.error .${ className.icon }::after,
+  .${ className.box }.error .${ className.icon }::before {
     top: 20%;
     left: 50%;
     width: 2px;
@@ -138,13 +138,13 @@ function useMessage(params: Message.Option = {}) {
     margin-left: -1px;
     border-radius: 1px;
   }
-  .${className.box}.error .${className.icon}::after {
+  .${ className.box }.error .${ className.icon }::after {
     transform: rotate(-45deg);
   }
-  .${className.box}.error .${className.icon}::before {
+  .${ className.box }.error .${ className.icon }::before {
     transform: rotate(45deg);
   }
-  .${className.box}.success .${className.icon}::after {
+  .${ className.box }.success .${ className.icon }::after {
     box-sizing: content-box;
     background-color: transparent;
     border: 2px solid #fff;
@@ -158,144 +158,148 @@ function useMessage(params: Message.Option = {}) {
     transform-origin: center;
   }
   `;
-  style.textContent = cssText.replace(/(\s)*/g, "$1").replace(/\n|\t|\s([{},:;])/g, "$1").replace(/([{},:;])\s/g, "$1");
-  doc.head.appendChild(style);
-  /** 消息队列 */
-  const messageList: Array<HTMLElement> = [];
+    style.textContent = cssText.replace(/(\s)*/g, "$1").replace(/\n|\t|\s([{},:;])/g, "$1").replace(/([{},:;])\s/g, "$1");
+    doc.head.appendChild(style);
+    /** 消息队列 */
+    const messageList: Array<HTMLElement> = [];
 
-  /**
-   * 获取指定`item`的定位`top`
-   * @param el
-   */
-  function getItemTop(el?: HTMLElement) {
-    let top = 10;
-    for (let i = 0; i < messageList.length; i++) {
-      const item = messageList[i];
-      if (el && el === item) {
-        break;
-      }
-      top += item.clientHeight + 20;
+    /**
+     * 获取指定`item`的定位`top`
+     * @param el
+     */
+    function getItemTop(el?: HTMLElement) {
+        let top = 10;
+        for (let i = 0; i < messageList.length; i++) {
+            const item = messageList[i];
+            if (el && el === item) {
+                break;
+            }
+            top += item.clientHeight + 20;
+        }
+        return top;
     }
-    return top;
-  }
 
-  /**
-   * 删除指定列表项
-   * @param el
-   */
-  function removeItem(el: HTMLElement) {
-    for (let i = 0; i < messageList.length; i++) {
-      const item = messageList[i];
-      if (item === el) {
-        messageList.splice(i, 1);
-        break;
-      }
+    /**
+     * 删除指定列表项
+     * @param el
+     */
+    function removeItem(el: HTMLElement) {
+        for (let i = 0; i < messageList.length; i++) {
+            const item = messageList[i];
+            if (item === el) {
+                messageList.splice(i, 1);
+                break;
+            }
+        }
+        el.classList.add(className.hide);
+        messageList.forEach(item => {
+            item.style.top = `${ getItemTop(item) }px`;
+        });
     }
-    el.classList.add(className.hide);
-    messageList.forEach(item => {
-      item.style.top = `${getItemTop(item)}px`;
-    });
-  }
 
-  /**
-   * 显示一条消息
-   * @param content 内容
-   * @param type 消息类型
-   * @param duration 持续时间，优先级比默认值高
-   */
-  function show(content: string, type: Message.Type = "info", duration?: number) {
-    const el = doc.createElement("div");
-    el.className = className.item;
-    el.style.top = `${getItemTop()}px`;
-    el.style.zIndex = zIndex.message;
-    el.innerHTML = `
-    <div class="${className.box} ${type}">
-      <span class="${className.icon}"></span>
-      <span class="${className.text}">${content}</span>
+    /**
+     * 显示一条消息
+     * @param content 内容
+     * @param type 消息类型
+     * @param duration 持续时间，优先级比默认值高
+     */
+    function show(content: string, type: Message.Type = "info", duration?: number) {
+        const el = doc.createElement("div");
+        el.className = className.item;
+        el.style.top = `${ getItemTop() }px`;
+        el.style.zIndex = zIndex.message;
+        el.innerHTML = `
+    <div class="${ className.box } ${ type }">
+      <span class="${ className.icon }"></span>
+      <span class="${ className.text }">${ content }</span>
     </div>
     `;
-    messageList.push(el);
-    doc.body.appendChild(el);
-    // 添加动画监听事件
-    function animationEnd() {
-      el.removeEventListener("animationend", animationEnd);
-      setTimeout(removeItem, duration || params.duration || 3000, el);
-    }
-    el.addEventListener("animationend", animationEnd);
-    function transitionEnd() {
-      if (getComputedStyle(el).opacity !== "0")
-        return;
-      el.removeEventListener("transitionend", transitionEnd);
-      el.remove();
-    }
-    el.addEventListener("transitionend", transitionEnd);
-  }
+        messageList.push(el);
+        doc.body.appendChild(el);
 
-  return {
-    show,
-    /** 普通描述提示 */
-    info(msg: string) {
-      show(msg, "info");
-    },
-    /** 成功提示 */
-    success(msg: string) {
-      show(msg, "success");
-    },
-    /** 警告提示 */
-    warning(msg: string) {
-      show(msg, "warning");
-    },
-    /** 错误提示 */
-    error(msg: string) {
-      show(msg, "error");
-    },
-  }
+        // 添加动画监听事件
+        function animationEnd() {
+            el.removeEventListener("animationend", animationEnd);
+            setTimeout(removeItem, duration || params.duration || 3000, el);
+        }
+
+        el.addEventListener("animationend", animationEnd);
+
+        function transitionEnd() {
+            if (getComputedStyle(el).opacity !== "0")
+                return;
+            el.removeEventListener("transitionend", transitionEnd);
+            el.remove();
+        }
+
+        el.addEventListener("transitionend", transitionEnd);
+    }
+
+    return {
+        show,
+        /** 普通描述提示 */
+        info(msg: string) {
+            show(msg, "info");
+        },
+        /** 成功提示 */
+        success(msg: string) {
+            show(msg, "success");
+        },
+        /** 警告提示 */
+        warning(msg: string) {
+            show(msg, "warning");
+        },
+        /** 错误提示 */
+        error(msg: string) {
+            show(msg, "error");
+        },
+    }
 }
 
 namespace Dialog {
-  /**
-   * 回调类型，支持回调和`Promise`两种处理方式
-   * - close 为`true`时为关闭
-   * - `Promise`返回值为`true`时亦是如此
-   */
-  export type Callback = ((callback: (close: boolean) => void) => void) | (() => Promise<boolean>);
+    /**
+     * 回调类型，支持回调和`Promise`两种处理方式
+     * - close 为`true`时为关闭
+     * - `Promise`返回值为`true`时亦是如此
+     */
+    export type Callback = ((callback: (close: boolean) => void) => void) | (() => Promise<boolean>);
 
-  export interface Show {
-    /** 弹框标题，传`""`则不显示标题，默认为`"提示"`（可传html） */
-    title?: string;
-    /** 提示内容（可传html） */
-    content: string;
-    /** 确认回调 */
-    confirm?: Callback;
-    /** 确认按钮文字，默认为`"确认"` */
-    confirmText?: string;
-    /** 取消回调 */
-    cancel?: Callback;
-    /** 取消按钮文字，不传则没有取消操作 */
-    cancelText?: string;
-    /** 弹框宽度 */
-    width?: string;
-  }
+    export interface Show {
+        /** 弹框标题，传`""`则不显示标题，默认为`"提示"`（可传html） */
+        title?: string;
+        /** 提示内容（可传html） */
+        content: string;
+        /** 确认回调 */
+        confirm?: Callback;
+        /** 确认按钮文字，默认为`"确认"` */
+        confirmText?: string;
+        /** 取消回调 */
+        cancel?: Callback;
+        /** 取消按钮文字，不传则没有取消操作 */
+        cancelText?: string;
+        /** 弹框宽度 */
+        width?: string;
+    }
 }
 
 /** 对话框控件 */
 function useDialog() {
-  const doc = document;
-  const cssModule = `__${Math.random().toString(36).slice(2, 7)}`;
-  const className = {
-    mask: `dialog-mask${cssModule}`,
-    popup: `dialog-popup${cssModule}`,
-    title: `dialog-title${cssModule}`,
-    content: `dialog-content${cssModule}`,
-    footer: `dialog-footer${cssModule}`,
-    confirm: `confirm${cssModule}`,
-    cancel: `cancel${cssModule}`,
-    fade: `fade${cssModule}`,
-    show: `show${cssModule}`,
-    hide: `hide${cssModule}`
-  }
-  const cssText = `
-  .${className.mask} {
+    const doc = document;
+    const cssModule = `__${ Math.random().toString(36).slice(2, 7) }`;
+    const className = {
+        mask: `dialog-mask${ cssModule }`,
+        popup: `dialog-popup${ cssModule }`,
+        title: `dialog-title${ cssModule }`,
+        content: `dialog-content${ cssModule }`,
+        footer: `dialog-footer${ cssModule }`,
+        confirm: `confirm${ cssModule }`,
+        cancel: `cancel${ cssModule }`,
+        fade: `fade${ cssModule }`,
+        show: `show${ cssModule }`,
+        hide: `hide${ cssModule }`
+    }
+    const cssText = `
+  .${ className.mask } {
     --time: .3s;
     --transition: .3s all;
     --black: #333;
@@ -312,21 +316,21 @@ function useDialog() {
     align-items: center;
     justify-content: center;
     transition: var(--transition);
-    animation: ${className.fade} var(--time);
+    animation: ${ className.fade } var(--time);
   }
-  .${className.mask} * {
+  .${ className.mask } * {
     box-sizing: border-box;
   }
-  .${className.popup} {
+  .${ className.popup } {
     width: 74%;
     max-width: 375px;
     border-radius: var(--border-radius);
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
     background-color: #fff;
     transition: var(--transition);
-    animation: ${className.show} var(--time);
+    animation: ${ className.show } var(--time);
   }
-  .${className.title} {
+  .${ className.title } {
     font-size: 18px;
     padding: 12px 15px;
     border-bottom: solid 1px #eee;
@@ -334,7 +338,7 @@ function useDialog() {
     color: var(--black);
     text-align: left;
   }
-  .${className.content} {
+  .${ className.content } {
     padding: 16px 15px;
     font-size: 15px;
     color: var(--text-color);
@@ -343,14 +347,14 @@ function useDialog() {
     max-height: 80vh;
     overflow: auto;
   }
-  .${className.footer} {
+  .${ className.footer } {
     width: 100%;
     text-align: right;
     border-top: solid 1px #eee;
     padding: 10px 15px;
     font-size: 0;
   }
-  .${className.footer} button {
+  .${ className.footer } button {
     height: 34px;
     font-size: 14px;
     border-radius: var(--border-radius);
@@ -360,165 +364,167 @@ function useDialog() {
     min-width: 70px;
     cursor: pointer;
   }
-  .${className.footer} button:active {
+  .${ className.footer } button:active {
     opacity: 0.8;
   }
-  .${className.footer} button:disabled {
+  .${ className.footer } button:disabled {
     cursor: no-drop;
     opacity: 0.8;
   }
-  .${className.footer} button + button {
+  .${ className.footer } button + button {
     margin-left: 10px;
   }
-  .${className.footer} .${className.confirm} {
+  .${ className.footer } .${ className.confirm } {
     background-color: var(--confirm-bg);
     color: #fff;
   }
-  @keyframes ${className.fade} {
+  @keyframes ${ className.fade } {
     0% { opacity: 0; }
     100% { opacity: 1; }
   }
-  @keyframes ${className.show} {
+  @keyframes ${ className.show } {
     0% { transform: translate3d(var(--x), var(--y), 0) scale(0); }
     100% { transform: translate3d(0, 0, 0) scale(1); }
   }
-  .${className.mask}.${className.hide} {
+  .${ className.mask }.${ className.hide } {
     opacity: 0;
   }
-  .${className.mask}.${className.hide} .${className.popup} {
+  .${ className.mask }.${ className.hide } .${ className.popup } {
     transform: translate3d(var(--x), var(--y), 0) scale(0);
   }
   `;
-  const style = doc.createElement("style");
-  style.textContent = cssText.replace(/(\n|\t|\s)*/ig, "$1").replace(/\n|\t|\s(\{|\}|\,|\:|\;)/ig, "$1").replace(/(\{|\}|\,|\:|\;)\s/ig, "$1");
-  doc.head.appendChild(style);
-  /** 点击记录坐标 */
-  const clickSize = {
-    x: "0vw",
-    y: "0vh"
-  }
-  // 添加点击事件，并记录每次点击坐标
-  doc.addEventListener("click", function(e) {
-    const { innerWidth, innerHeight } = window;
-    const centerX = innerWidth / 2;
-    const centerY = innerHeight / 2;
-    const pageY = e.clientY - centerY;
-    const pageX = e.clientX - centerX;
-    clickSize.x = `${pageX / innerWidth * 100}vw`;
-    clickSize.y = `${pageY / innerHeight * 100}vh`;
-  }, true);
-  /**
-   * 输出节点
-   * @param option
-   */
-  function show(option: Dialog.Show) {
-    const el = doc.createElement("section");
-    el.className = className.mask;
-    el.style.zIndex = zIndex.dialog
-    // 设置起始偏移位置
-    el.style.setProperty("--x", clickSize.x);
-    el.style.setProperty("--y", clickSize.y);
-    // 设置完之后还原坐标位置
-    clickSize.x = "0vw";
-    clickSize.y = "0vh";
-    const cancelBtn = option.cancelText ? `<button class="${className.cancel}">${option.cancelText}</button>` : "";
-    const style = option.width ? `style="width: ${option.width}; max-width: 100%"` : "";
-    el.innerHTML = `
-    <div class="${className.popup}" ${style}>
-      <h2 class="${className.title}">${ typeof option.title === "string" ? option.title : "提示"}</h2>
-      <div class="${className.content}">${option.content}</div>
-      <div class="${className.footer}">
-        ${cancelBtn}
-        <button class="${className.confirm}">${option.confirmText || "确认"}</button>
+    const style = doc.createElement("style");
+    style.textContent = cssText.replace(/(\n|\t|\s)*/ig, "$1").replace(/\n|\t|\s(\{|\}|\,|\:|\;)/ig, "$1").replace(/(\{|\}|\,|\:|\;)\s/ig, "$1");
+    doc.head.appendChild(style);
+    /** 点击记录坐标 */
+    const clickSize = {
+        x: "0vw",
+        y: "0vh"
+    }
+    // 添加点击事件，并记录每次点击坐标
+    doc.addEventListener("click", function (e) {
+        const {innerWidth, innerHeight} = window;
+        const centerX = innerWidth / 2;
+        const centerY = innerHeight / 2;
+        const pageY = e.clientY - centerY;
+        const pageX = e.clientX - centerX;
+        clickSize.x = `${ pageX / innerWidth * 100 }vw`;
+        clickSize.y = `${ pageY / innerHeight * 100 }vh`;
+    }, true);
+
+    /**
+     * 输出节点
+     * @param option
+     */
+    function show(option: Dialog.Show) {
+        const el = doc.createElement("section");
+        el.className = className.mask;
+        el.style.zIndex = zIndex.dialog
+        // 设置起始偏移位置
+        el.style.setProperty("--x", clickSize.x);
+        el.style.setProperty("--y", clickSize.y);
+        // 设置完之后还原坐标位置
+        clickSize.x = "0vw";
+        clickSize.y = "0vh";
+        const cancelBtn = option.cancelText ? `<button class="${ className.cancel }">${ option.cancelText }</button>` : "";
+        const style = option.width ? `style="width: ${ option.width }; max-width: 100%"` : "";
+        el.innerHTML = `
+    <div class="${ className.popup }" ${ style }>
+      <h2 class="${ className.title }">${ typeof option.title === "string" ? option.title : "提示" }</h2>
+      <div class="${ className.content }">${ option.content }</div>
+      <div class="${ className.footer }">
+        ${ cancelBtn }
+        <button class="${ className.confirm }">${ option.confirmText || "确认" }</button>
       </div>
     </div>
     `;
-    doc.body.appendChild(el);
-    el.addEventListener("transitionend", function(e) {
-      e.target === el && el.classList.contains(className.hide) && el.remove();
-    });
-    const confirm = el.querySelector(`.${className.confirm}`) as HTMLButtonElement;
-    const cancel = el.querySelector(`.${className.cancel}`) as HTMLButtonElement;
-    let pending = false;
-    
-    function hide() {
-      el.classList.add(className.hide);
-    }
-
-    function showLoading() {
-      pending = true;
-      confirm.setAttribute("data-text", confirm.textContent!);
-      confirm.disabled = true;
-      confirm.textContent = "loading.."
-      if (cancel) {
-        confirm.disabled = true;
-      }
-    }
-
-    function hideLoading() {
-      pending = false;
-      confirm.textContent = confirm.getAttribute("data-text");
-      confirm.disabled = false;
-      if (cancel) {
-        cancel.disabled = false;
-      }
-    }
-
-    async function handleAsync(cb?: Dialog.Callback) {
-      if (pending) return;
-      if (!cb) return hide();
-      if (isType(cb, "asyncfunction")) {
-        showLoading();
-        const close = await cb();
-        hideLoading();
-        if (isType(close, "boolean")) {
-          close && hide();
-        } else {
-          hide();
-        }
-        return;
-      }
-      // TODO: 严格模式下不允许使用 arguments，所以这里直接用长度来判断
-      // if (isType(cb.arguments[0], "function")) {
-      if (cb.length) {
-        showLoading();
-        cb(close => {
-          hideLoading();
-          close && hide();
+        doc.body.appendChild(el);
+        el.addEventListener("transitionend", function (e) {
+            e.target === el && el.classList.contains(className.hide) && el.remove();
         });
-        return;
-      }
-      // @ts-ignore
-      cb();
-      hide();
-    }
-    if (option.cancelText) {
-      cancel.onclick = function () {
-        handleAsync(option.cancel);
-      }
-    }
-    confirm.onclick = function () {
-      handleAsync(option.confirm);
-    }
-  }
+        const confirm = el.querySelector(`.${ className.confirm }`) as HTMLButtonElement;
+        const cancel = el.querySelector(`.${ className.cancel }`) as HTMLButtonElement;
+        let pending = false;
 
-  return {
-    show
-  }
+        function hide() {
+            el.classList.add(className.hide);
+        }
+
+        function showLoading() {
+            pending = true;
+            confirm.setAttribute("data-text", confirm.textContent!);
+            confirm.disabled = true;
+            confirm.textContent = "loading.."
+            if (cancel) {
+                confirm.disabled = true;
+            }
+        }
+
+        function hideLoading() {
+            pending = false;
+            confirm.textContent = confirm.getAttribute("data-text");
+            confirm.disabled = false;
+            if (cancel) {
+                cancel.disabled = false;
+            }
+        }
+
+        async function handleAsync(cb?: Dialog.Callback) {
+            if (pending) return;
+            if (!cb) return hide();
+            if (isType(cb, "asyncfunction")) {
+                showLoading();
+                const close = await cb();
+                hideLoading();
+                if (isType(close, "boolean")) {
+                    close && hide();
+                } else {
+                    hide();
+                }
+                return;
+            }
+            // TODO: 严格模式下不允许使用 arguments，所以这里直接用长度来判断
+            // if (isType(cb.arguments[0], "function")) {
+            if (cb.length) {
+                showLoading();
+                cb(close => {
+                    hideLoading();
+                    close && hide();
+                });
+                return;
+            }
+            // @ts-ignore
+            cb();
+            hide();
+        }
+
+        if (option.cancelText) {
+            cancel.onclick = function () {
+                handleAsync(option.cancel);
+            }
+        }
+        confirm.onclick = function () {
+            handleAsync(option.confirm);
+        }
+    }
+
+    return {
+        show
+    }
 }
 
 const zIndex = {
-  get message() {
-    return (useZIndex() + 20).toString();
-  },
-  get dialog() {
-    return (useZIndex() + 10).toString();
-  }
+    get message() {
+        return (useZIndex() + 20).toString();
+    },
+    get dialog() {
+        return (useZIndex() + 10).toString();
+    }
 }
 
 /** 顶部消息提醒控件 */
 export const message = useMessage({
-  duration: 3600
+    duration: 3600
 });
 
 const dialog = useDialog();

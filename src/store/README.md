@@ -106,36 +106,37 @@ export default store;
 页面应用 `/views/demo.vue`
 
 ```html
+
 <script lang="ts" setup>
-import store from "@/store";
+    import store from "@/store";
 
-const userInfo = store.user.info;
+    const userInfo = store.user.info;
 
-const orderInfo = store.order.info;
+    const orderInfo = store.order.info;
 
-function onEditPrice() {
-  store.order.update({
-    goods: {
-      price: 2199
+    function onEditPrice() {
+        store.order.update({
+            goods: {
+                price: 2199
+            }
+        })
     }
-  })
-}
 
-function onSubmit() {
-  if (new Date(orderInfo.time).getTime() > new Date(orderInfo.createTime).getTime()) {
-    alert(`当前用户【${userInfo.name}】未在${orderInfo.time}之前下单，请重新操作`);
-    store.order.reset();
-    return;
-  }
-}
+    function onSubmit() {
+        if (new Date(orderInfo.time).getTime() > new Date(orderInfo.createTime).getTime()) {
+            alert(`当前用户【${ userInfo.name }】未在${ orderInfo.time }之前下单，请重新操作`);
+            store.order.reset();
+
+        }
+    }
 </script>
 <template>
-  <div>
-    <div>{{ userInfo.name }}</div>
-    <span class="the-tag cyan">商品名称：{{ orderInfo.goods.name }}</span>
-    <span class="the-tag red">${{ orderInfo.goods.price / 100 }}</span>
-    <button @click="onEditPrice()">修改价格</button>
-    <button @click="onSubmit()">发起支付</button>
-  </div>
+    <div>
+        <div>{{ userInfo.name }}</div>
+        <span class="the-tag cyan">商品名称：{{ orderInfo.goods.name }}</span>
+        <span class="the-tag red">${{ orderInfo.goods.price / 100 }}</span>
+        <button @click="onEditPrice()">修改价格</button>
+        <button @click="onSubmit()">发起支付</button>
+    </div>
 </template>
 ```

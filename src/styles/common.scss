@@ -73,27 +73,72 @@
 // ======================= flex全局样式 =======================
 
 /* flex布局 */
-.flex { display: flex; flex-wrap: nowrap; }
-.f-wrap { display: flex; flex-wrap: wrap; }
-.f1 { flex: 1; }
-.f2 { flex: 2; }
-.f3 { flex: 3; }
+.flex {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.f-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.f1 {
+  flex: 1;
+}
+
+.f2 {
+  flex: 2;
+}
+
+.f3 {
+  flex: 3;
+}
+
 /* 垂直居中 */
-.f-vertical { display: flex; align-items: center; }
+.f-vertical {
+  display: flex;
+  align-items: center;
+}
+
 /* 水平居中 */
-.f-center { display: flex; justify-content: center; }
+.f-center {
+  display: flex;
+  justify-content: center;
+}
+
 /* 水平 + 垂直居中 */
-.f-vc, .fvc { display: flex; align-items: center; justify-content: center; }
+.f-vc, .fvc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* 右对齐 */
-.f-right { display: flex; justify-content: flex-end; }
+.f-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
 /* 两端对齐 */
-.f-between { display: flex; justify-content: space-between; }
+.f-between {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* 靠底部对齐 */
-.f-bottom { display: flex; align-items: flex-end; }
+.f-bottom {
+  display: flex;
+  align-items: flex-end;
+}
 
 
 /* 溢出...显示 当前节点生效 */
-.ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 .ellipsis-1, .ellipsis-2, .ellipsis-3 {
   display: -webkit-box;
@@ -102,6 +147,17 @@
 }
 
 /* 溢出...显示 子节点生效 */
-.ellipsis-1 { line-clamp: 1; -webkit-line-clamp: 1; }
-.ellipsis-2 { line-clamp: 2; -webkit-line-clamp: 2; }
-.ellipsis-3 { line-clamp: 3; -webkit-line-clamp: 3; }
+.ellipsis-1 {
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+}
+
+.ellipsis-2 {
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+}
+
+.ellipsis-3 {
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+}

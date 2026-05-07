@@ -26,7 +26,7 @@
   }
 }
 
-@mixin tag-color ($bg, $color) {
+@mixin tag-color($bg, $color) {
   background-color: $bg;
   color: $color;
 

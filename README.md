@@ -1,4 +1,3 @@
-
 # 无 UI 框架依赖的 Vue3 后台管理模板
 
 > 描述：无 UI 框架依赖，可以无缝接入自己喜欢的 UI 框架使用
@@ -11,21 +10,21 @@
 
 ## 版本及分支说明
 
-| 分支 | 演示地址 | 所用技术 | 补充/说明 |
-| --- | --- | --- | --- |
-| [master](https://github.com/Travis-hjs/vue-admin) | [预览](https://travis-hjs.github.io/vue-admin) | vite 8.x、vue 3.x、vue-router 5.x、typescript | vue3 版本，无引用任何 UI 框架 |
+| 分支                                                              | 演示地址                                            | 所用技术                                                    | 补充/说明                                                                                                                |
+|-----------------------------------------------------------------|-------------------------------------------------|---------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| [master](https://github.com/Travis-hjs/vue-admin)               | [预览](https://travis-hjs.github.io/vue-admin)    | vite 8.x、vue 3.x、vue-router 5.x、typescript              | vue3 版本，无引用任何 UI 框架                                                                                                  |
 | [el-plus](https://github.com/Travis-hjs/vue-admin/tree/el-plus) | [预览](https://travis-hjs.github.io/vue-admin-el) | vite 8.x、vue 3.x、vue-router 5.x、typescript、element-plus | 基于`master`加入了 UI 框架的配置使用，并增加了 [curd 低代码功能](https://github.com/Travis-hjs/vue-admin/tree/el-plus/src/components/Curd) |
 
 ## 功能清单
 
-| 功能 | 描述 & 说明 |
-| ---- | ---- |
-| layout-核心布局 | [详细说明](./src/layout/README.md) |
-| 路由配置和权限使用 | 当前有 **静态** 和 **动态** 路由两种配置，[详细说明](./src/router/REAMDE.md) |
-| http-网络请求 | 直接使用原生封装的一个工具函数，[详细说明](./src/api/README.md) |
-| 状态管理 | 自行设计的一套管理方式，不限框架使用，[详细说明](./src/store/README.md) |
-| svg-图标 | 使用异步远程加载：[详细说明](./src/components/Icon/README.md) |
-| 常用工具函数 | 在 [src/utils/index.ts](src/utils/index.ts) 中内置了一些使用频率极高的工具函数：类型判断、日期格式化、文本复制、深拷贝等。 |
+| 功能          | 描述 & 说明                                                                            |
+|-------------|------------------------------------------------------------------------------------|
+| layout-核心布局 | [详细说明](./src/layout/README.md)                                                     |
+| 路由配置和权限使用   | 当前有 **静态** 和 **动态** 路由两种配置，[详细说明](./src/router/REAMDE.md)                          |
+| http-网络请求   | 直接使用原生封装的一个工具函数，[详细说明](./src/api/README.md)                                        |
+| 状态管理        | 自行设计的一套管理方式，不限框架使用，[详细说明](./src/store/README.md)                                   |
+| svg-图标      | 使用异步远程加载：[详细说明](./src/components/Icon/README.md)                                   |
+| 常用工具函数      | 在 [src/utils/index.ts](src/utils/index.ts) 中内置了一些使用频率极高的工具函数：类型判断、日期格式化、文本复制、深拷贝等。 |
 
 当前模板只提供必需的功能，功能模块之间尽可能保证低耦合性，这对所有开发者都是一件非常有利的事情，例如你无需担心替换、修改某一功能时影响到其他。另外更为重要的是：当前所有已实现功能都不依赖任何第三方库，这意味着你可以无需关心`package.json`的依赖版本，因为根本就没有其他依赖，所以根据自己的喜好去引入第三方库的时候会非常舒服。
 

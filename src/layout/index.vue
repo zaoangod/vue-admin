@@ -1,7 +1,7 @@
 <script lang="ts">
 /** 整体布局架子 */
 export default {
-  name: "Layout"
+    name: "Layout"
 }
 </script>
 <script lang="ts" setup>
@@ -34,11 +34,11 @@ const layoutInfo = store.layout.info;
 // console.log("路由缓存列表 >>", cacheList);
 
 const cacheList = computed(() => {
-  const list: Array<string> = [];
-  store.layout.info.tagList.forEach(el => {
-    el.meta.keepAlive && el.name && list.push(el.name);
-  });
-  return list;
+    const list: Array<string> = [];
+    store.layout.info.tagList.forEach(el => {
+        el.meta.keepAlive && el.name && list.push(el.name);
+    });
+    return list;
 });
 
 const contentBox = ref<HTMLElement>();
@@ -48,48 +48,48 @@ const showToTop = ref(false);
 let contentEl: HTMLElement;
 
 function toTop() {
-  contentEl.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth"
-  })
+    contentEl.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+    })
 }
 
 function onScroll() {
-  // 判断超过一屏高度则显示返回顶部按钮
-  showToTop.value = contentEl.scrollTop > document.documentElement.clientHeight;
+    // 判断超过一屏高度则显示返回顶部按钮
+    showToTop.value = contentEl.scrollTop > document.documentElement.clientHeight;
 }
 
 onMounted(function () {
-  contentEl = contentBox.value!;
-  contentEl.addEventListener("scroll", onScroll);
-  onScroll(); // 一开始要先执行，因为有可能一开始就处于页面非顶部
+    contentEl = contentBox.value!;
+    contentEl.addEventListener("scroll", onScroll);
+    onScroll(); // 一开始要先执行，因为有可能一开始就处于页面非顶部
 });
 </script>
 <template>
-  <div
-    :class="[
+    <div
+        :class="[
       'the-layout',
       layoutInfo.layoutMode,
       { 'has-tag-list': layoutInfo.showTagList },
       { 'collapsed-sidebar': !layoutInfo.showSidebar }
     ]"
-  >
-    <HeaderBar />
-    <Sidebar />
-    <div class="the-layout-content" ref="contentBox">
-      <router-view class="the-layout-page" v-slot="{ Component, route }">
-        <transition name="page-y" mode="out-in">
-          <keep-alive :include="cacheList">
-            <component :is="Component" :key="route.fullPath" />
-          </keep-alive>
-        </transition>
-      </router-view>
+    >
+        <HeaderBar/>
+        <Sidebar/>
+        <div ref="contentBox" class="the-layout-content">
+            <router-view v-slot="{ Component, route }" class="the-layout-page">
+                <transition mode="out-in" name="page-y">
+                    <keep-alive :include="cacheList">
+                        <component :is="Component" :key="route.fullPath"/>
+                    </keep-alive>
+                </transition>
+            </router-view>
+        </div>
+        <button :class="['the-layout-to-top fvc', {'hidden' : !showToTop}]" title="返回顶部" @click="toTop()">
+            <Icon :size="20" name="tdesign:align-top"/>
+        </button>
     </div>
-    <button :class="['the-layout-to-top fvc', {'hidden' : !showToTop}]" title="返回顶部" @click="toTop()">
-      <Icon name="tdesign:align-top" :size="20" />
-    </button>
-  </div>
 </template>
 <style lang="scss">
 @use "./styles/layout";
