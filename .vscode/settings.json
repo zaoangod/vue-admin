@@ -1,9 +1,0 @@
-{
-  "editor.tabSize": 2,
-  "cSpell.words": [
-    "iconify",
-    "tdesign",
-    "Vite"
-  ],
-  "tailwindCSS.lint.suggestCanonicalClasses": "ignore",
-}
